@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+
+    
+<!-- Mirrored from hiresy.netlify.app/html/jobs-grid by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:11:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+        <meta charset="utf-8">
+        <title>Jobs Grid ||  - Hiresy Job Listing Page Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Objedctthemes" name="author">
+        <meta content="Hiresy - Job Listing Page Template" name="description">
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        
+        <!--------------Bootstrap Icon----------------->
+        <!-- <link href="assets/css/bootstrap-icons.min.css" rel="stylesheet"> -->
+        <!--------------Main CSS----------------->
+        <!-- <link href="assets/css/main.min.css" rel="stylesheet"> -->
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+            <div class="container">
+                <a class='navbar-brand' href='index.html'>
+                    <img src="assets/images/logo-dark.png" alt="Dark Logo" height="22" class="dark">
+                    <img src="assets/images/logo-light.png" alt="Light Logo" height="22" class="light">
+                </a>
+                <button class="navbar-toggler btn text-body ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="homeMenu" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Home
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-md" aria-labelledby="homeMenu">
+                                <li><a class='dropdown-item' href='index.html'>Main Demo</a></li>
+                                <li><a class='dropdown-item' href='layout-two.html'>Layout 2</a></li>
+                                <li><a class='dropdown-item' href='layout-three.html'>Layout 3</a></li>
+                                <li><a class='dropdown-item' href='dashboard.html'>Dashboard</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="findJobsMenu" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Find Jobs
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-md" aria-labelledby="findJobsMenu">
+                                <li><a class='dropdown-item' href='jobs-list.html'>Job List</a></li>
+                                <li><a class='dropdown-item' href='jobs-list-two.html'>Job List 2</a></li>
+                                <li><a class='dropdown-item' href='jobs-grid-two.html'>Two Column Grid</a></li>
+                                <li><a class='dropdown-item' href='jobs-grid.html'>Three Column Grid</a></li>
+                                <li><a class='dropdown-item' href='jobs-grid-four.html'>Four Column Grid</a></li>
+                                <li><a class='dropdown-item' href='jobs-without-filter.html'>Without Filter Grid</a></li>
+                                <li><a class='dropdown-item' href='jobs-overview.html'>Overview</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class='nav-link' href='about-us.html'>About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='nav-link' href='team.html'>Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='nav-link' href='pricing.html'>Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class='nav-link' href='contact-us.html'>Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="hstack gap-2">
+                    <button type="button" class="btn btn-link square-xs p-0 d-flex align-items-center justify-content-center text-body btn-sm"><i class="bi bi-search"></i></button>
+                    <button type="button" class="btn btn-link rounded-circle square-xs p-0 font-13 d-flex align-items-center justify-content-center btn-sm" id="dataTheme"><i class="bi bi-moon-stars"></i> <i class="bi bi-sun"></i></button>
+                    <a href="#!">
+                        <img src="assets/images/feedback_client/client-01.jpg" alt="" class="square-xs rounded img-thumbnail object-fit-cover">
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-md-9">
+                        <h4 class="mb-3">Find Your Dream Jobs</h4>
+                        <p class="text-muted mb-0">Professional networking site LinkedIn has grown to become a major platform for both employers and candidates who're looking for the right job.</p>
+                    </div>
+                </div>
+            </div><!-- /container-->
+        </div>
+
+        <section class="wrapper-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-3">
+                        <div class="card border-0">
+                            <div class="card-header bg-primary">
+                                <div class="d-flex align-items-center">
+                                    <h6 class="card-title text-white flex-grow-1 mb-0">Filter</h6>
+                                    <div class="flex-shrink-0">
+                                        <a href="#!" class="link-light font-14">Clear all</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <h6 class="mb-3">Date Post</h6>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option value="1">Newest</option>
+                                        <option value="1">Oldest</option>
+                                        <option value="2">Anytime</option>
+                                        <option value="3">This Month</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 class="mb-3">Job Type</h6>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="allSelect">
+                                        <label class="form-check-label text-muted" for="allSelect">
+                                            All Select
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="fullTime">
+                                        <label class="form-check-label text-muted" for="fullTime">
+                                            Full Time
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="partTime" checked>
+                                        <label class="form-check-label text-muted" for="partTime">
+                                            Part Time
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="remote">
+                                        <label class="form-check-label text-muted" for="remote">
+                                            Remote
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="freelancer" checked>
+                                        <label class="form-check-label text-muted" for="freelancer">
+                                            Freelancer
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 class="mb-3">Range Salary</h6>
+                                    <div class="mb-2">
+                                        <input type="range" class="form-range" min="0" max="10" id="rangeSlider">
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="rangeSalary" value=""
+                                            id="under500">
+                                        <label class="form-check-label text-muted" for="under500">
+                                            Under $500
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="rangeSalary" value=""
+                                            id="under650">
+                                        <label class="form-check-label text-muted" for="under650">
+                                            Under $650
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="rangeSalary" value=""
+                                            id="under800" checked>
+                                        <label class="form-check-label text-muted" for="under800">
+                                            Under $800
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="rangeSalary" value=""
+                                            id="under1000">
+                                        <label class="form-check-label text-muted" for="under1000">
+                                            Under $1000
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="rangeSalary" value=""
+                                            id="under1500" checked>
+                                        <label class="form-check-label text-muted" for="under1500">
+                                            Up to $1500
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-3">Experience Level</h6>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="allSelectex">
+                                        <label class="form-check-label text-muted" for="allSelectex">
+                                            All Select
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="Internship">
+                                        <label class="form-check-label text-muted" for="Internship">
+                                            Internship
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="Fresher" checked>
+                                        <label class="form-check-label text-muted" for="Fresher">
+                                            Fresher
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="2Years">
+                                        <label class="form-check-label text-muted" for="2Years">
+                                            2+ Years
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="5Years" checked>
+                                        <label class="form-check-label text-muted" for="5Years">
+                                            5+ Years
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-9">
+                        <div class="row g-3 mb-4">
+                            <div class="col-lg-5">
+                                <div class="fliter_inpur position-relative">
+                                    <i class="bi bi-search"></i>
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search for jobs, salary ...">
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="fliter_inpur position-relative">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Location ...">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-success w-100"><i class="bi bi-search align-baseline me-1"></i> Find Jobs</button>
+                            </div>
+                        </div>
+                        <p class="text-muted font-15 text-end"><b>1523</b> Jobs Search</p>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card border-0 card-effect card-height">
+                                    <div class="card-body vstack">
+                                        <div class="mb-3">
+                                            <div class="float-end">
+                                                <button type="button" class="btn btn-warning btn-soft btn-bookmark" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                            </div>
+                                            <img src="assets/images/company_logo/flutter.jpg" alt="" class="square-sm rounded">
+                                            <div class="mt-3">
+                                                <h5 class="font-16">eCommerce Executive</h5>
+                                                <ul class="d-flex align-items-center gap-2 list-unstyled mb-0 font-12 text-muted flex-wrap">    
+                                                    <li><i class="bi bi-geo-alt align-baseline me-1"></i> Mexico</li>
+                                                    <li class="vr"></li>
+                                                    <li><i class="bi bi-cash align-baseline me-1"></i> $165 - $182</li>
+                                                    <li class="vr"></li>
+                                                    <li>63 Applicant</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="mb-auto">
+                                            <p class="font-14 text-muted">The E-Commerce Executive contributes to the growth of E-Commerce business by enhancing the customer experience, executing.</p>
+                                            <div class="hstack gap-2 flex-wrap mb-4">
+                                                <span class="badge bg-success-subtle text-success">Full Time</span>
+                                                <span class="badge bg-danger-subtle text-danger">Urgent</span>
+                                                <span class="badge bg-info-subtle text-info">Internship</span>
+                                                <span class="badge bg-dark-subtle text-body">Remote</span>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary btn-sm btn-effect w-100 btn-soft">Apply Now <i class="bi bi-arrow-right align-baseline ms-1"></i></button>
+                                    </div>
+                                </div>
+                            </div><!-- .col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card border-0 card-effect card-height">
+                                    <div class="card-body vstack">
+                                        <div class="mb-3">
+                                            <div class="float-end">
+                                                <button type="button" class="btn btn-warning btn-soft btn-bookmark" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                            </div>
+                                            <img src="assets/images/company_logo/flask.jpg" alt="" class="square-sm rounded">
+                                            <div class="mt-3">
+                                                <h5 class="font-16">Senior UI Developer</h5>
+                                                <ul class="d-flex align-items-center gap-2 list-unstyled mb-0 font-12 text-muted flex-wrap">    
+                                                    <li><i class="bi bi-geo-alt align-baseline me-1"></i> Bermuda</li>
+                                                    <li class="vr"></li>
+                                                    <li><i class="bi bi-cash align-baseline me-1"></i> $160 - $200</li>
+                                                    <li class="vr"></li>
+                                                    <li>87 Applicant</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="mb-auto">
+                                            <p class="font-14 text-muted">Senior UI designers, or senior user interface designers, oversee and guide the process of developing the visual and interactive.</p>
+                                            <div class="hstack gap-2 flex-wrap mb-4">
+                                                <span class="badge bg-secondary-subtle text-secondary">Freelancer</span>
+                                                <span class="badge bg-dark-subtle text-body">Remote</span>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary btn-sm btn-effect w-100 btn-soft">Apply Now <i class="bi bi-arrow-right align-baseline ms-1"></i></button>
+                                    </div>
+                                </div>
+                            </div><!-- .col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card border-0 card-effect card-height">
+                                    <div class="card-body vstack">
+                                        <div class="mb-3">
+                                            <div class="float-end">
+                                                <button type="button" class="btn btn-warning btn-soft btn-bookmark" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                            </div>
+                                            <img src="assets/images/company_logo/shopify.jpg" alt="" class="square-sm rounded">
+                                            <div class="mt-3">
+                                                <h5 class="font-16">Marketing Executive</h5>
+                                                <ul class="d-flex align-items-center gap-2 list-unstyled mb-0 font-12 text-muted flex-wrap">    
+                                                    <li><i class="bi bi-geo-alt align-baseline me-1"></i> Germany</li>
+                                                    <li class="vr"></li>
+                                                    <li><i class="bi bi-cash align-baseline me-1"></i> $253 - $412</li>
+                                                    <li class="vr"></li>
+                                                    <li>91 Applicant</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="mb-auto">
+                                            <p class="font-14 text-muted">A marketing executive is a professional who plans, develops and oversees the overall marketing strategies and campaigns.</p>
+                                            <div class="hstack gap-2 flex-wrap mb-4">
+                                                <span class="badge bg-danger-subtle text-danger">Part Time</span>
+                                                <span class="badge bg-info-subtle text-info">Internship</span>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary btn-sm btn-effect w-100 btn-soft">Apply Now <i class="bi bi-arrow-right align-baseline ms-1"></i></button>
+                                    </div>
+                                </div>
+                            </div><!-- .col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card border-0 card-effect card-height">
+                                    <div class="card-body vstack">
+                                        <div class="mb-3">
+                                            <div class="float-end">
+                                                <button type="button" class="btn btn-warning btn-soft btn-bookmark" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                            </div>
+                                            <img src="assets/images/company_logo/twitter.png" alt="" class="square-sm rounded">
+                                            <div class="mt-3">
+                                                <h5 class="font-16">Flutter Developer</h5>
+                                                <ul class="d-flex align-items-center gap-2 list-unstyled mb-0 font-12 text-muted flex-wrap">    
+                                                    <li><i class="bi bi-geo-alt align-baseline me-1"></i> Saudi Arabia</li>
+                                                    <li class="vr"></li>
+                                                    <li><i class="bi bi-cash align-baseline me-1"></i> $120 - $230</li>
+                                                    <li class="vr"></li>
+                                                    <li>120 Applicant</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="mb-auto">
+                                            <p class="font-14 text-muted">Flutter is Google's UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.</p>
+                                            <div class="hstack gap-2 flex-wrap mb-4">
+                                                <span class="badge bg-dark-subtle text-body">Remote</span>
+                                                <span class="badge bg-success-subtle text-success">Full Time</span>
+                                                <span class="badge bg-danger-subtle text-danger">Urgent</span>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary btn-sm btn-effect w-100 btn-soft">Apply Now <i class="bi bi-arrow-right align-baseline ms-1"></i></button>
+                                    </div>
+                                </div>
+                            </div><!-- .col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card border-0 card-effect card-height">
+                                    <div class="card-body vstack">
+                                        <div class="mb-3">
+                                            <div class="float-end">
+                                                <button type="button" class="btn btn-warning btn-soft btn-bookmark" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                            </div>
+                                            <img src="assets/images/company_logo/vue.jpg" alt="" class="square-sm rounded">
+                                            <div class="mt-3">
+                                                <h5 class="font-16">Recruitment Executive</h5>
+                                                <ul class="d-flex align-items-center gap-2 list-unstyled mb-0 font-12 text-muted flex-wrap">    
+                                                    <li><i class="bi bi-geo-alt align-baseline me-1"></i> Romania</li>
+                                                    <li class="vr"></li>
+                                                    <li><i class="bi bi-cash align-baseline me-1"></i> $80 - $130</li>
+                                                    <li class="vr"></li>
+                                                    <li>74 Applicant</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="mb-auto">
+                                            <p class="font-14 text-muted">Identifying and recruiting prospective candidates using a variety of channels. Assessing candidates to ensure qualification match.</p>
+                                            <div class="hstack gap-2 flex-wrap mb-4">
+                                                <span class="badge bg-danger-subtle text-danger">Part Time</span>
+                                                <span class="badge bg-secondary-subtle text-secondary">Freelancer</span>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary btn-sm btn-effect w-100 btn-soft">Apply Now <i class="bi bi-arrow-right align-baseline ms-1"></i></button>
+                                    </div>
+                                </div>
+                            </div><!-- .col-->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card border-0 card-effect card-height">
+                                    <div class="card-body vstack">
+                                        <div class="mb-3">
+                                            <div class="float-end">
+                                                <button type="button" class="btn btn-warning btn-soft btn-bookmark" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                            </div>
+                                            <img src="assets/images/company_logo/react.jpg" alt="" class="square-sm rounded">
+                                            <div class="mt-3">
+                                                <h5 class="font-16">React Developer</h5>
+                                                <ul class="d-flex align-items-center gap-2 list-unstyled mb-0 font-12 text-muted flex-wrap">    
+                                                    <li><i class="bi bi-geo-alt align-baseline me-1"></i> Mexico</li>
+                                                    <li class="vr"></li>
+                                                    <li><i class="bi bi-cash align-baseline me-1"></i> $90 - $180</li>
+                                                    <li class="vr"></li>
+                                                    <li>174 Applicant</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="mb-auto">
+                                            <p class="font-14 text-muted">A React developer designs and creates JavaScript-based applications for web or mobile environments. They typically specialize in front-end development.</p>
+                                            <div class="hstack gap-2 flex-wrap mb-4">
+                                                <span class="badge bg-dark-subtle text-body">Remote</span>
+                                                <span class="badge bg-info-subtle text-info">Internship</span>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary btn-sm btn-effect w-100 btn-soft">Apply Now <i class="bi bi-arrow-right align-baseline ms-1"></i></button>
+                                    </div>
+                                </div>
+                            </div><!-- .col-->
+                            <div class="col-lg-12">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center mt-4">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <i class="bi bi-chevron-left"></i>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <i class="bi bi-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="wrapper-box bg-success-subtle overflow-hidden">
+            <i class="bi bi-briefcase position-absolute text-success opacity-25 job_bag-icon"></i>
+            <i class="bi bi-envelope position-absolute text-success opacity-25 job_email-icon"></i>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="text-center mb-5">
+                            <h2 class="text-capitalize lh-base mb-0">Get the Latest <span class="text-success">news & updates</span> from our company</h2>
+                        </div>
+                    </div><!-- /col-->
+                    <div class="col-lg-7">
+                        <form action="#!" class="subcribe-input position-relative">
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter your email">
+                            <button class="btn btn-success">Subscribe</button>
+                        </form>
+                    </div>
+                </div><!-- /row-->
+            </div><!--/container-->
+        </section>
+
+        <footer class="main_footer position-relative">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-3">
+                        <h5 class="mb-3">
+                            <img src="assets/images/logo-dark.png" alt="" height="22" class="dark">
+                            <img src="assets/images/logo-light.png" alt="" height="22" class="light">
+                        </h5>
+                        <p class="footer_content mb-4">Performance reviews are also called performance appraisals or performance evaluations.</p>
+                        <ul class="footer_social_media list-unstyled hstack gap-2 flex-wrap mb-0">
+                            <li>
+                                <a href="#!"><i class="bi bi-whatsapp"></i></a>
+                            </li>
+                            <li>
+                                <a href="#!"><i class="bi bi-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="#!"><i class="bi bi-google"></i></a>
+                            </li>
+                            <li>
+                                <a href="#!"><i class="bi bi-twitter"></i></a>
+                            </li>
+                        </ul>
+                    </div><!-- .col-->
+                    <div class="col-lg-2 col-sm-6">
+                        <h6 class="footer_title mb-3">Resources</h6>
+                        <div class="footer_menu_list vstack list-unstyled mb-0">
+                            <a href="#!">About Us</a>
+                            <a href="#!">Out Team</a>
+                            <a href="#!">Shop</a>
+                            <a href="#!">Contact</a>
+                        </div>
+                    </div><!-- .col-->
+                    <div class="col-lg-2 col-sm-6">
+                        <h6 class="footer_title mb-3">For Jobs</h6>
+                        <div class="footer_menu_list vstack list-unstyled mb-0">
+                            <a href="#!">Job Lists</a>
+                            <a href="#!">My Bookmarks</a>
+                            <a href="#!">Job Details</a>
+                            <a href="#!">Job Alerts</a>
+                        </div>
+                    </div><!-- .col-->
+                    <div class="col-lg-2 col-sm-6">
+                        <h6 class="footer_title mb-3">For Jobs</h6>
+                        <div class="footer_menu_list vstack list-unstyled mb-0">
+                            <a href="#!">Job Lists</a>
+                            <a href="#!">My Bookmarks</a>
+                            <a href="#!">Job Details</a>
+                            <a href="#!">Job Alerts</a>
+                        </div>
+                    </div><!-- .col-->
+                    <div class="col-lg-3 col-sm-6">
+                        <h6 class="footer_title mb-3">Download App</h6>
+                        <p class="footer_content">Download our Apps..!</p>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <a href="#!"><img src="assets/images/google_play.png" alt="" height="40"></a>
+                            <a href="#!"><img src="assets/images/app_store.png" alt="" height="40"></a>
+                        </div>
+                    </div><!-- .col-->
+                </div>
+            </div>
+        </footer>
+
+        <div class="footer_sub">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                        <p class="footer_sub_content font-15 mb-0"><script>document.write(new Date().getFullYear())</script> ... <b>Hiresy</b> Powered By <a href="http://www.objectthemes.com/" target="_blank" class="text-decoration-underline">ObjectThemes</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/plugin/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Main js -->
+        <script src="assets/js/main.js"></script>
+    </body>
+
+
+<!-- Mirrored from hiresy.netlify.app/html/jobs-grid by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:11:54 GMT -->
+</html>

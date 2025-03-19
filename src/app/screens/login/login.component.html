@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  x-data="{ darkTheme: false }"
+  x-init="
+const htmlTag = document.querySelector('html');
+$watch('darkTheme', value => {
+    htmlTag.setAttribute('data-bs-theme', value ? 'dark' : 'light');
+})
+"
+>
+  <!-- Mirrored from hiresy.netlify.app/html/auth-signin by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:12:38 GMT -->
+  <!-- Added by HTTrack --><meta
+    http-equiv="content-type"
+    content="text/html;charset=UTF-8"
+  /><!-- /Added by HTTrack -->
+  <head>
+    <meta charset="utf-8" />
+    <title>Sign In || - Hiresy Job Listing Page Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Objedctthemes" name="author" />
+    <meta content="Hiresy - Job Listing Page Template" name="description" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+
+    <!--------------Bootstrap Icon----------------->
+    <!-- <link href="assets/css/bootstrap-icons.min.css" rel="stylesheet" /> -->
+    <!--------------Bootstrap CSS----------------->
+    <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!--------------Main CSS----------------->
+    <!-- <link href="assets/css/main.min.css" rel="stylesheet" /> -->
+  </head>
+
+  <body
+    class="bg-light min-vh-100 d-flex align-items-center justify-content-center"
+  >
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="card border-0 shadow-md">
+            <div class="card-body p-4 m-2">
+              <h4 class="mb-4">Sign In</h4>
+              <a href="#!" class="btn btn-link border w-100 text-danger"
+                ><i class="bi bi-google me-1"></i> Continue with Google</a
+              >
+
+              <div class="text-muted py-4 text-center">OR</div>
+
+              <div>
+                <form>
+                  <div class="mb-3">
+                    <label
+                      for="userNameEmail"
+                      class="form-label font-15 fw-medium"
+                      >UserName / Email</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="userNameEmail"
+                      placeholder="Enter username / email"
+                    />
+                  </div>
+                  <div class="mb-4">
+                    <label
+                      for="exampleInputPassword1"
+                      class="form-label font-15 fw-medium"
+                      >Password</label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="exampleInputPassword1"
+                      placeholder="Enter password"
+                    />
+                    <div class="text-end pt-1">
+                      <a
+                        href="#!"
+                        class="text-end text-success font-14 fw-medium"
+                        >Forgot Password ?</a
+                      >
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-secondary w-100">
+                    Sign In
+                  </button>
+                </form>
+
+                <p class="mb-0 text-muted font-14 mt-3 text-center">
+                  Need an account?
+                  <a class="fw-medium" href="auth-signup.html">Sign Up</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="btn btn-danger rounded-end-0 position-fixed custom-dark-button"
+    >
+      <i
+        class="bi bi-brightness-high"
+        class="{ 'd-block': darkTheme, 'd-none': !darkTheme }"
+      ></i>
+      <i
+        class="bi bi-moon-stars"
+        class="{ 'd-none': darkTheme, 'd-block': !darkTheme }"
+      ></i>
+    </button>
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/plugin/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </body>
+</html>

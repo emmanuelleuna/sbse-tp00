@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en" x-data="{ darkTheme: false }" x-init="
+const htmlTag = document.querySelector('html');
+$watch('darkTheme', value => {
+    htmlTag.setAttribute('data-bs-theme', value ? 'dark' : 'light');
+})
+">
+
+
+<!-- Mirrored from hiresy.netlify.app/html/dashboard by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:11:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <title>Dashboards || - Hiresy Job Listing Page Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Objedctthemes" name="author">
+    <meta content="Hiresy - Job Listing Page Template" name="description">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <link rel="stylesheet" href="../../../../assets/plugin/apexcharts/apexcharts.css">
+
+    <!--------------Bootstrap Icon----------------->
+    <!-- <link href="assets/css/bootstrap-icons.min.css" rel="stylesheet"> -->
+    <!--------------Bootstrap CSS----------------->
+    <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!--------------Main CSS----------------->
+    <!-- <link href="assets/css/main.min.css" rel="stylesheet"> -->
+
+
+</head>
+
+<body class="bg-light">
+
+    <div>
+        <div class="offcanvas offcanvas-sidebar offcanvas-start bg-body-secondary" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="sidebar-left fixed-bottom bg-body-secondary shadow-md top-0 bottom-0 left-0">
+                <div class="d-flex align-items-center justify-content-center navbar-brand">
+                    <a href="#!">
+                        <img src="assets/images/logo-dark.png" alt="" height="26" class="dark">
+                <img src="assets/images/logo-light.png" alt="" height="26"  class="light">
+                    </a>
+                </div>
+                <div class="sidebar-navbar-menu">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href='dashboard.html'><i class="bi bi-cast"></i> Dashboards</a>
+                        </li>
+                        <li>
+                            <a href='admin-manage-jobs.html'><i class="bi bi-gem"></i> Manage Jobs</a>
+                        </li>
+                        <li>
+                            <a href='admin-manage-candidate.html'><i class="bi bi-person-plus"></i> Manage Candidates</a>
+                        </li>
+                        <li>
+                            <a href='admin-create-post.html'><i class="bi bi-file-text"></i> Post New Job</a>
+                        </li>
+                        <li>
+                            <a href='pricing.html'><i class="bi bi-airplane"></i> Pricing Plan</a>
+                        </li>
+                        <li>
+                            <a href='admin-profile.html'><i class="bi bi-person-circle"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href='auth-logout.html'><i class="bi bi-box-arrow-right"></i> Log Out</a>
+                        </li>
+                        <li>
+                            <a href='index.html'><i class="bi bi-person-x-fill"></i> Delete Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-topbar shadow-md bg-body-secondary px-3">
+            <div class="flex-grow-1">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    <span class="bi bi-list text-muted fs-2"></span>
+                </button>
+            </div>
+            <div class="flex-shrink-0">
+                <a class='btn btn-success' href='admin-create-post.html'>Post Job</a>
+            </div>
+        </div>
+        <div class="position-relative">
+            <div class="admin-page-wrapper">
+                <h5>Hello, Michelle Yoder 👋</h5>
+                <p class="text-muted font-15">Admin & Founder</p>
+    
+                <div class="row g-4">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card" :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <div class="square-sm">
+                                    <div class="square-content bg-primary-subtle rounded text-primary">
+                                        <i class="bi bi-file-text"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-17">258</h5>
+                                    <p class="mb-0 font-15 text-muted">Posted Job</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card" :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <div class="square-sm">
+                                    <div class="square-content bg-secondary-subtle rounded text-secondary">
+                                        <i class="bi bi-bookmark-star"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-17">16</h5>
+                                    <p class="mb-0 font-15 text-muted">Shortlisted</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card" :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <div class="square-sm">
+                                    <div class="square-content bg-warning-subtle rounded text-warning">
+                                        <i class="bi bi-eye"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-17">1.2k</h5>
+                                    <p class="mb-0 font-15 text-muted">Application</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card" :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }">
+                            <div class="card-body d-flex align-items-center gap-3">
+                                <div class="square-sm">
+                                    <div class="square-content bg-danger-subtle rounded text-danger">
+                                        <i class="bi bi-eye"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-17">3.5k</h5>
+                                    <p class="mb-0 font-15 text-muted">Save Candidate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-xxl-9 col-xl-8">
+                        <div class="card" :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }">
+                            <div class="card-header border-0 pb-2 d-flex align-items-center">
+                                <h6 class="font-15 mb-0 flex-grow-1">Job Overview</h6>
+                                <div class="dropdown flex-shrink-0">
+                                    <button class="btn btn-link btn-sm text-muted bg-light border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Current Month <i class="bi bi-caret-down ms-1 align-middle"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Last Month</a></li>
+                                        <li><a class="dropdown-item" href="#">Last 6 Months</a></li>
+                                        <li><a class="dropdown-item" href="#">Last Years</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <!-- graph -->
+                                <div id="jobView" class="ms-n3" dir="ltr"></div>
+                            </div>
+                        </div>
+                        <div class="card" :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }">
+                            <div class="card-header border-0 pb-2 d-flex align-items-center">
+                                <h6 class="font-15 mb-0 flex-grow-1">Job Overview</h6>
+                                <div class="flex-shrink-0">
+                                    <button class="btn btn-sm btn-primary" type="button">
+                                        View More <i class="bi bi-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table font-14 align-middle" x-data="data()">
+                                        <thead>
+                                            <tr>
+                                                <th click="sortByColumn">#</th>
+                                                <th click="sortByColumn">Company Name</th>
+                                                <th click="sortByColumn">Job Role</th>
+                                                <th click="sortByColumn">Status</th>
+                                                <th click="sortByColumn">Applied Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody x-ref="tbody">
+                                            <tr>
+                                                <td>1</td>
+                                                <td>
+                                                    <a href="#!" class="d-inline-flex align-items-center gap-2">
+                                                        <img src="assets/images/company_logo/linkedin.png" alt="" height="30" class="rounded">
+                                                        <h6 class="mb-0 font-15">Google</h6>
+                                                    </a>
+                                                </td>
+                                                <td>Web Designer</td>
+                                                <td><span class="badge bg-success-subtle text-success">Appoved</span></td>
+                                                <td>24 Feb, 2024</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>
+                                                    <a href="#!" class="d-inline-flex align-items-center gap-2">
+                                                        <img src="assets/images/company_logo/flutter.jpg" alt="" height="30" class="rounded">
+                                                        <h6 class="mb-0 font-15">ObjectThemes</h6>
+                                                    </a>
+                                                </td>
+                                                <td>eCommerce Executive</td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Pending</span></td>
+                                                <td>17 Feb, 2024</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>
+                                                    <a href="#!" class="d-inline-flex align-items-center gap-2">
+                                                        <img src="assets/images/company_logo/flask.jpg" alt="" height="30" class="rounded">
+                                                        <h6 class="mb-0 font-15">Ctrl Solution</h6>
+                                                    </a>
+                                                </td>
+                                                <td>Marketing Executive</td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Pending</span></td>
+                                                <td>15 Feb, 2024</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>
+                                                    <a href="#!" class="d-inline-flex align-items-center gap-2">
+                                                        <img src="assets/images/company_logo/vue.jpg" alt="" height="30" class="rounded">
+                                                        <h6 class="mb-0 font-15">Pixel Soft</h6>
+                                                    </a>
+                                                </td>
+                                                <td>Flutter Developer</td>
+                                                <td><span class="badge bg-success-subtle text-success">Appoved</span></td>
+                                                <td>09 Feb, 2024</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>
+                                                    <a href="#!" class="d-inline-flex align-items-center gap-2">
+                                                        <img src="assets/images/company_logo/shopify.jpg" alt="" height="30" class="rounded">
+                                                        <h6 class="mb-0 font-15">Shopify</h6>
+                                                    </a>
+                                                </td>
+                                                <td>Sr. Content Writer</td>
+                                                <td><span class="badge bg-success-subtle text-success">Appoved</span></td>
+                                                <td>28 Jan, 2024</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>
+                                                    <a href="#!" class="d-inline-flex align-items-center gap-2">
+                                                        <img src="assets/images/company_logo/telegram.png" alt="" height="30" class="rounded">
+                                                        <h6 class="mb-0 font-15">Telegram</h6>
+                                                    </a>
+                                                </td>
+                                                <td>Team Leader</td>
+                                                <td><span class="badge bg-warning-subtle text-warning">Pending</span></td>
+                                                <td>23 Jan, 2024</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <p class="mb-0 text-muted text-center text-lg-start font-14 mb-3 mb-lg-0">Showing <b>36</b> of <b>497</b> Jobs</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-center justify-content-lg-end mb-0 pagination-sm">
+                                                <li class="page-item">
+                                                    <a class="page-link square-xs" href="#" aria-label="Previous">
+                                                        <i class="bi bi-chevron-left"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link square-xs" href="#">1</a></li>
+                                                <li class="page-item active"><a class="page-link square-xs" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link square-xs" href="#">3</a></li>
+                                                <li class="page-item"><a class="page-link square-xs" href="#">4</a></li>
+                                                <li class="page-item"><a class="page-link square-xs" href="#">5</a></li>
+                                                <li class="page-item">
+                                                    <a class="page-link square-xs" href="#" aria-label="Next">
+                                                        <i class="bi bi-chevron-right"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-4">
+                        <div class="card" :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }">
+                            <div class="card-header border-0 pb-2">
+                                <h6 class="font-15 mb-0">Recommended Jobs</h6>
+                            </div>
+                            <div class="card-body vstack gap-3">
+                                <div class="card border-0 bg-body-tertiary bg-opacity-75 mb-0">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-danger btn-soft btn-bookmark float-end" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                        <h6 class="font-14">UI/UX Designer</h6>
+                                        <p class="font-12 text-muted"><a href="#!" class="text-reset">ObjectThemes</a></p>
+                                        <div class="hstack gap-2 flex-wrap mb-0 mt-4">
+                                            <span class="badge bg-secondary-subtle text-secondary">Freelancer</span>
+                                            <span class="badge bg-dark-subtle text-body">Remote</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card border-0 bg-body-tertiary bg-opacity-75 mb-0">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-danger btn-soft btn-bookmark float-end" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                        <h6 class="font-14">Recruitment Executive</h6>
+                                        <p class="font-12 text-muted"><a href="#!" class="text-reset">Telegram</a></p>
+                                        <div class="hstack gap-2 flex-wrap mt-4">
+                                            <span class="badge bg-danger-subtle text-danger">Part Time</span>
+                                            <span class="badge bg-info-subtle text-info">Internship</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card border-0 bg-body-tertiary bg-opacity-75 mb-0">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-danger btn-soft btn-bookmark float-end" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                        <h6 class="font-14">eCommerce Executive</h6>
+                                        <p class="font-12 text-muted"><a href="#!" class="text-reset">Amezon</a></p>
+                                        <div class="hstack gap-2 flex-wrap mt-4">
+                                            <span class="badge bg-dark-subtle text-body">Remote</span>
+                                            <span class="badge bg-success-subtle text-success">Full Time</span>
+                                            <span class="badge bg-danger-subtle text-danger">Urgent</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card border-0 bg-body-tertiary bg-opacity-75 mb-0">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-danger btn-soft btn-bookmark float-end" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                        <h6 class="font-14">Product Designer</h6>
+                                        <p class="font-12 text-muted"><a href="#!" class="text-reset">Shopify</a></p>
+                                        <div class="hstack gap-2 flex-wrap mt-4">
+                                            <span class="badge bg-success-subtle text-success">Full Time</span>
+                                            <span class="badge bg-info-subtle text-info">Internship</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card border-0 bg-body-tertiary bg-opacity-75 mb-0">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-danger btn-soft btn-bookmark float-end" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                        <h6 class="font-14">Digital Marketing</h6>
+                                        <p class="font-12 text-muted"><a href="#!" class="text-reset">ObjectThemes</a></p>
+                                        <div class="hstack gap-2 flex-wrap mb-0 mt-4">
+                                            <span class="badge bg-success-subtle text-success">Full Time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card border-0 bg-body-tertiary bg-opacity-75 mb-0">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-danger btn-soft btn-bookmark float-end" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                        <h6 class="font-14">UI/UX Designer</h6>
+                                        <p class="font-12 text-muted"><a href="#!" class="text-reset">ObjectThemes</a></p>
+                                        <div class="hstack gap-2 flex-wrap mb-0 mt-4">
+                                            <span class="badge bg-secondary-subtle text-secondary">Freelancer</span>
+                                            <span class="badge bg-dark-subtle text-body">Remote</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card border-0 bg-body-tertiary bg-opacity-75 mb-0">
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-danger btn-soft btn-bookmark float-end" data-bs-toggle="button"><i class="bi bi-bookmark-star"></i></button>
+                                        <h6 class="font-14">React Development</h6>
+                                        <p class="font-12 text-muted"><a href="#!" class="text-reset">ObjectThemes</a></p>
+                                        <div class="hstack gap-2 flex-wrap mb-0 mt-4">
+                                            <span class="badge bg-info-subtle text-info">Internship</span>
+                                            <span class="badge bg-secondary-subtle text-secondary">Freelancer</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="admin-footer w-100 border-top position-absolute bottom-0 start-0 bottom-0">
+                <div class="row align-items-center justify-content-center w-100">
+                    <div class="col-lg-6 text-center">
+                        <p class="font-15 mb-0"><script>document.write(new Date().getFullYear())</script> ... <b>Hiresy</b> Powered By <a href="http://www.objectthemes.com/" target="_blank" class="text-decoration-underline">ObjectThemes</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button click="darkTheme = !darkTheme" class="btn btn-danger rounded-end-0 position-fixed custom-dark-button">
+        <i class="bi bi-brightness-high" :class="{ 'd-block': darkTheme, 'd-none': !darkTheme }"></i>
+        <i class="bi bi-moon-stars" :class="{ 'd-none': darkTheme, 'd-block': !darkTheme }"></i>
+    </button>
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/plugin/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script src="../../../../assets/plugin/apexcharts/apexcharts.min.js"></script>
+
+    <script src="../../../../assets/js/dashboard.init.js"></script>
+    <!-- Main js -->
+    <script src="../../../../assets/js/admin.init.js"></script>
+</body>
+
+
+<!-- Mirrored from hiresy.netlify.app/html/dashboard by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:12:07 GMT -->
+</html>

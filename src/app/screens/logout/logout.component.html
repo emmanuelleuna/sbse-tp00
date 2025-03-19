@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" x-data="{ darkTheme: false }" x-init="
+const htmlTag = document.querySelector('html');
+$watch('darkTheme', value => {
+    htmlTag.setAttribute('data-bs-theme', value ? 'dark' : 'light');
+})
+">
+
+
+<!-- Mirrored from hiresy.netlify.app/html/auth-logout by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:12:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <title>Logout || - Hiresy Job Listing Page Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Objedctthemes" name="author">
+    <meta content="Hiresy - Job Listing Page Template" name="description">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!--------------Bootstrap Icon----------------->
+    <!-- <link href="assets/css/bootstrap-icons.min.css" rel="stylesheet"> -->
+    <!--------------Bootstrap CSS----------------->
+    <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!--------------Main CSS----------------->
+    <!-- <link href="assets/css/main.min.css" rel="stylesheet"> -->
+
+
+</head>
+
+<body class="bg-light min-vh-100 d-flex align-items-center justify-content-center">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="">
+                <div class="card" :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }">
+                    <div class="card-body p-4 m-2">
+                        <div class="text-center">
+                            <img src="assets/images/logout.png" alt="" class="square-sm">
+                            <h6 class="font-17 mt-4">You are not currently logged in.</h6>
+                            <p class="text-muted font-14 mb-4 pb-1">Thank you for utilizing the Hiresy Job board template.</p>
+                            <a class='btn btn-primary w-100' href='auth-signin.html'>Sign In</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <button click="darkTheme = !darkTheme" class="btn btn-danger rounded-end-0 position-fixed custom-dark-button">
+        <i class="bi bi-brightness-high" :class="{ 'd-block': darkTheme, 'd-none': !darkTheme }"></i>
+        <i class="bi bi-moon-stars" :class="{ 'd-none': darkTheme, 'd-block': !darkTheme }"></i>
+    </button>
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/plugin/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+</body>
+
+
+<!-- Mirrored from hiresy.netlify.app/html/auth-logout by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:12:32 GMT -->
+</html>
