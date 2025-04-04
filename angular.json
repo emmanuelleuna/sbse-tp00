@@ -27,17 +27,16 @@
             "styles": [
               "src/styles.css",
               "src/assets/css/bootstrap-icons.min.css",
-              "src/assets/css/bootstrap.min.css",
               "src/assets/css/main.min.css",
               "src/assets/plugin/apexcharts/apexcharts.css"
             ],
             "scripts": [
-              "src/assets/js/admin.init.js",
-              "/home/emmanuel/Dev/sbse-tp00/src/assets/js/dashboard.init.js",
-              "src/assets/js/main.js",
-              "src/assets/js/manage-jobs.init.js",
+              "src/assets/plugin/bootstrap/js/bootstrap.bundle.min.js",
               "src/assets/plugin/apexcharts/apexcharts.min.js",
-              "src/assets/plugin/bootstrap/js/bootstrap.bundle.min.js"
+              "src/assets/js/main.js",
+              "src/assets/js/admin.init.js",
+              "src/assets/js/manage-jobs.init.js",
+              "src/assets/js/test.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,

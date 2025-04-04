@@ -1,0 +1,489 @@
+<div class="position-relative">
+    <div class="admin-page-wrapper">
+      <h5>Hello, Michelle Yoder 👋</h5>
+      <p class="text-muted font-15">Admin & Founder</p>
+
+      <div class="row g-4">
+        <div class="col-xl-3 col-md-6">
+          <div class="card">
+            <div class="card-body d-flex align-items-center gap-3">
+              <div class="square-sm">
+                <div
+                  class="square-content bg-primary-subtle rounded text-primary"
+                >
+                  <i class="bi bi-file-text"></i>
+                </div>
+              </div>
+              <div>
+                <h5 class="font-17">258</h5>
+                <p class="mb-0 font-15 text-muted">Posted Job</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card">
+            <div class="card-body d-flex align-items-center gap-3">
+              <div class="square-sm">
+                <div
+                  class="square-content bg-secondary-subtle rounded text-secondary"
+                >
+                  <i class="bi bi-bookmark-star"></i>
+                </div>
+              </div>
+              <div>
+                <h5 class="font-17">16</h5>
+                <p class="mb-0 font-15 text-muted">Shortlisted</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card">
+            <div class="card-body d-flex align-items-center gap-3">
+              <div class="square-sm">
+                <div
+                  class="square-content bg-warning-subtle rounded text-warning"
+                >
+                  <i class="bi bi-eye"></i>
+                </div>
+              </div>
+              <div>
+                <h5 class="font-17">1.2k</h5>
+                <p class="mb-0 font-15 text-muted">Application</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card">
+            <div class="card-body d-flex align-items-center gap-3">
+              <div class="square-sm">
+                <div
+                  class="square-content bg-danger-subtle rounded text-danger"
+                >
+                  <i class="bi bi-eye"></i>
+                </div>
+              </div>
+              <div>
+                <h5 class="font-17">3.5k</h5>
+                <p class="mb-0 font-15 text-muted">Save Candidate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xxl-9 col-xl-8">
+          <div class="card">
+            <div
+              class="card-header border-0 pb-2 d-flex align-items-center"
+            >
+              <h6 class="font-15 mb-0 flex-grow-1">Job Overview</h6>
+              <div class="flex-shrink-0">
+                <button class="btn btn-sm btn-primary" type="button">
+                  View More <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table font-14 align-middle" x-data="data()">
+                  <thead>
+                    <tr>
+                      <th click="sortByColumn">#</th>
+                      <th click="sortByColumn">Company Name</th>
+                      <th click="sortByColumn">Job Role</th>
+                      <th click="sortByColumn">Status</th>
+                      <th click="sortByColumn">Applied Date</th>
+                    </tr>
+                  </thead>
+                  <tbody x-ref="tbody">
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <a
+                          href="#!"
+                          class="d-inline-flex align-items-center gap-2"
+                        >
+                          <img
+                            src="assets/images/company_logo/linkedin.png"
+                            alt=""
+                            height="30"
+                            class="rounded"
+                          />
+                          <h6 class="mb-0 font-15">Google</h6>
+                        </a>
+                      </td>
+                      <td>Web Designer</td>
+                      <td>
+                        <span class="badge bg-success-subtle text-success"
+                          >Appoved</span
+                        >
+                      </td>
+                      <td>24 Feb, 2024</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>
+                        <a
+                          href="#!"
+                          class="d-inline-flex align-items-center gap-2"
+                        >
+                          <img
+                            src="assets/images/company_logo/flutter.jpg"
+                            alt=""
+                            height="30"
+                            class="rounded"
+                          />
+                          <h6 class="mb-0 font-15">ObjectThemes</h6>
+                        </a>
+                      </td>
+                      <td>eCommerce Executive</td>
+                      <td>
+                        <span class="badge bg-warning-subtle text-warning"
+                          >Pending</span
+                        >
+                      </td>
+                      <td>17 Feb, 2024</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>
+                        <a
+                          href="#!"
+                          class="d-inline-flex align-items-center gap-2"
+                        >
+                          <img
+                            src="assets/images/company_logo/flask.jpg"
+                            alt=""
+                            height="30"
+                            class="rounded"
+                          />
+                          <h6 class="mb-0 font-15">Ctrl Solution</h6>
+                        </a>
+                      </td>
+                      <td>Marketing Executive</td>
+                      <td>
+                        <span class="badge bg-warning-subtle text-warning"
+                          >Pending</span
+                        >
+                      </td>
+                      <td>15 Feb, 2024</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>
+                        <a
+                          href="#!"
+                          class="d-inline-flex align-items-center gap-2"
+                        >
+                          <img
+                            src="assets/images/company_logo/vue.jpg"
+                            alt=""
+                            height="30"
+                            class="rounded"
+                          />
+                          <h6 class="mb-0 font-15">Pixel Soft</h6>
+                        </a>
+                      </td>
+                      <td>Flutter Developer</td>
+                      <td>
+                        <span class="badge bg-success-subtle text-success"
+                          >Appoved</span
+                        >
+                      </td>
+                      <td>09 Feb, 2024</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>
+                        <a
+                          href="#!"
+                          class="d-inline-flex align-items-center gap-2"
+                        >
+                          <img
+                            src="assets/images/company_logo/shopify.jpg"
+                            alt=""
+                            height="30"
+                            class="rounded"
+                          />
+                          <h6 class="mb-0 font-15">Shopify</h6>
+                        </a>
+                      </td>
+                      <td>Sr. Content Writer</td>
+                      <td>
+                        <span class="badge bg-success-subtle text-success"
+                          >Appoved</span
+                        >
+                      </td>
+                      <td>28 Jan, 2024</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>
+                        <a
+                          href="#!"
+                          class="d-inline-flex align-items-center gap-2"
+                        >
+                          <img
+                            src="assets/images/company_logo/telegram.png"
+                            alt=""
+                            height="30"
+                            class="rounded"
+                          />
+                          <h6 class="mb-0 font-15">Telegram</h6>
+                        </a>
+                      </td>
+                      <td>Team Leader</td>
+                      <td>
+                        <span class="badge bg-warning-subtle text-warning"
+                          >Pending</span
+                        >
+                      </td>
+                      <td>23 Jan, 2024</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="row align-items-center">
+                <div class="col-lg-6">
+                  <p
+                    class="mb-0 text-muted text-center text-lg-start font-14 mb-3 mb-lg-0"
+                  >
+                    Showing <b>36</b> of <b>497</b> Jobs
+                  </p>
+                </div>
+                <div class="col-lg-6">
+                  <nav aria-label="Page navigation example">
+                    <ul
+                      class="pagination justify-content-center justify-content-lg-end mb-0 pagination-sm"
+                    >
+                      <li class="page-item">
+                        <a
+                          class="page-link square-xs"
+                          href="#"
+                          aria-label="Previous"
+                        >
+                          <i class="bi bi-chevron-left"></i>
+                        </a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link square-xs" href="#">1</a>
+                      </li>
+                      <li class="page-item active">
+                        <a class="page-link square-xs" href="#">2</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link square-xs" href="#">3</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link square-xs" href="#">4</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link square-xs" href="#">5</a>
+                      </li>
+                      <li class="page-item">
+                        <a
+                          class="page-link square-xs"
+                          href="#"
+                          aria-label="Next"
+                        >
+                          <i class="bi bi-chevron-right"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-3 col-xl-4">
+          <div class="card">
+            <div class="card-header border-0 pb-2">
+              <h6 class="font-15 mb-0">Recommended Jobs</h6>
+            </div>
+            <div class="card-body vstack gap-3">
+              <div
+                class="card border-0 bg-body-tertiary bg-opacity-75 mb-0"
+              >
+                <div class="card-body">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-soft btn-bookmark float-end"
+                    data-bs-toggle="button"
+                  >
+                    <i class="bi bi-bookmark-star"></i>
+                  </button>
+                  <h6 class="font-14">UI/UX Designer</h6>
+                  <p class="font-12 text-muted">
+                    <a href="#!" class="text-reset">ObjectThemes</a>
+                  </p>
+                  <div class="hstack gap-2 flex-wrap mb-0 mt-4">
+                    <span class="badge bg-secondary-subtle text-secondary"
+                      >Freelancer</span
+                    >
+                    <span class="badge bg-dark-subtle text-body"
+                      >Remote</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="card border-0 bg-body-tertiary bg-opacity-75 mb-0"
+              >
+                <div class="card-body">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-soft btn-bookmark float-end"
+                    data-bs-toggle="button"
+                  >
+                    <i class="bi bi-bookmark-star"></i>
+                  </button>
+                  <h6 class="font-14">Recruitment Executive</h6>
+                  <p class="font-12 text-muted">
+                    <a href="#!" class="text-reset">Telegram</a>
+                  </p>
+                  <div class="hstack gap-2 flex-wrap mt-4">
+                    <span class="badge bg-danger-subtle text-danger"
+                      >Part Time</span
+                    >
+                    <span class="badge bg-info-subtle text-info"
+                      >Internship</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="card border-0 bg-body-tertiary bg-opacity-75 mb-0"
+              >
+                <div class="card-body">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-soft btn-bookmark float-end"
+                    data-bs-toggle="button"
+                  >
+                    <i class="bi bi-bookmark-star"></i>
+                  </button>
+                  <h6 class="font-14">eCommerce Executive</h6>
+                  <p class="font-12 text-muted">
+                    <a href="#!" class="text-reset">Amezon</a>
+                  </p>
+                  <div class="hstack gap-2 flex-wrap mt-4">
+                    <span class="badge bg-dark-subtle text-body"
+                      >Remote</span
+                    >
+                    <span class="badge bg-success-subtle text-success"
+                      >Full Time</span
+                    >
+                    <span class="badge bg-danger-subtle text-danger"
+                      >Urgent</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="card border-0 bg-body-tertiary bg-opacity-75 mb-0"
+              >
+                <div class="card-body">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-soft btn-bookmark float-end"
+                    data-bs-toggle="button"
+                  >
+                    <i class="bi bi-bookmark-star"></i>
+                  </button>
+                  <h6 class="font-14">Product Designer</h6>
+                  <p class="font-12 text-muted">
+                    <a href="#!" class="text-reset">Shopify</a>
+                  </p>
+                  <div class="hstack gap-2 flex-wrap mt-4">
+                    <span class="badge bg-success-subtle text-success"
+                      >Full Time</span
+                    >
+                    <span class="badge bg-info-subtle text-info"
+                      >Internship</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="card border-0 bg-body-tertiary bg-opacity-75 mb-0"
+              >
+                <div class="card-body">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-soft btn-bookmark float-end"
+                    data-bs-toggle="button"
+                  >
+                    <i class="bi bi-bookmark-star"></i>
+                  </button>
+                  <h6 class="font-14">Digital Marketing</h6>
+                  <p class="font-12 text-muted">
+                    <a href="#!" class="text-reset">ObjectThemes</a>
+                  </p>
+                  <div class="hstack gap-2 flex-wrap mb-0 mt-4">
+                    <span class="badge bg-success-subtle text-success"
+                      >Full Time</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="card border-0 bg-body-tertiary bg-opacity-75 mb-0"
+              >
+                <div class="card-body">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-soft btn-bookmark float-end"
+                    data-bs-toggle="button"
+                  >
+                    <i class="bi bi-bookmark-star"></i>
+                  </button>
+                  <h6 class="font-14">UI/UX Designer</h6>
+                  <p class="font-12 text-muted">
+                    <a href="#!" class="text-reset">ObjectThemes</a>
+                  </p>
+                  <div class="hstack gap-2 flex-wrap mb-0 mt-4">
+                    <span class="badge bg-secondary-subtle text-secondary"
+                      >Freelancer</span
+                    >
+                    <span class="badge bg-dark-subtle text-body"
+                      >Remote</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="card border-0 bg-body-tertiary bg-opacity-75 mb-0"
+              >
+                <div class="card-body">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-soft btn-bookmark float-end"
+                    data-bs-toggle="button"
+                  >
+                    <i class="bi bi-bookmark-star"></i>
+                  </button>
+                  <h6 class="font-14">React Development</h6>
+                  <p class="font-12 text-muted">
+                    <a href="#!" class="text-reset">ObjectThemes</a>
+                  </p>
+                  <div class="hstack gap-2 flex-wrap mb-0 mt-4">
+                    <span class="badge bg-info-subtle text-info"
+                      >Internship</span
+                    >
+                    <span class="badge bg-secondary-subtle text-secondary"
+                      >Freelancer</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
