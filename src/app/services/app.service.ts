@@ -11,13 +11,52 @@ export class AppService {
 
   private apiUrl = 'https://1d6d-129-0-189-50.ngrok-free.app'; // À adapter selon ton backend
 
-  // 🔐 Ajoute le token dans l'en-tête si nécessaire
+
+  /**
+   * Données de l'utilisateur
+   */
+  user: any = null;
+
+  // Ajoute le token dans l'en-tête si nécessaire
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('access_token');
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
   }
+
+  /**
+   * Vérifie si l'utilisateur est connecté
+   * @returns 
+   */
+  isUserConnected(): boolean {
+    const token = localStorage.getItem('access_token');
+    return token !== null && token !== undefined;
+  }
+
+  /**
+   * Récupère les données de l'utilisateur à partir du token
+   * @returns 
+   */
+  getUserData() {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      // const payload = token.split('.')[1];
+      // const decodedPayload = atob(payload);
+      // return JSON.parse(decodedPayload);
+    }
+    return null;
+  }
+
+  /**
+   * Set user data
+   * @param user 
+   */
+  setUserData(user: any) {
+    this.user = user;
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+  // ------------------ API Routes ------------------
 
   // 1. Enregistrement employeur
   registerEmployer(data: { username: string; password: string }): Observable<any> {

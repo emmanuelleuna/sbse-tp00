@@ -1,0 +1,200 @@
+<!-- nav bar -->
+<nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img
+        src="assets/images/logo-dark.png"
+        alt="Dark Logo"
+        height="22"
+        class="dark"
+      />
+      <img
+        src="assets/images/logo-light.png"
+        alt="Light Logo"
+        height="22"
+        class="light"
+      />
+    </a>
+    <button
+      class="navbar-toggler btn text-body ms-auto"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="bi bi-list"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link"
+            id="homeMenu"
+            role="button"
+            aria-expanded="false"
+            routerLink="/site/home"
+          >
+            Home
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link"
+            href="#"
+            id="findJobsMenu"
+            role="button"
+            aria-expanded="false"
+            routerLink="/site/job-list"
+          >
+            Find Jobs
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/site/about-us">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/site/team">Team</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="pricing.html">Pricing</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/site/contact-us">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+    <div class="hstack gap-2">
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle flex-row align-items-center"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <!-- Dropdown button -->
+          <i class="bi bi-person-circle fs-5"></i>
+        </button>
+
+        <!-- disconnected dropdown -->
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLink="/login">Sign in</a></li>
+          <li><a class="dropdown-item" routerLink="/register">Sign up</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- page -->
+<router-outlet />
+
+<!-- footer -->
+<footer class="main_footer position-relative">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-3">
+        <h5 class="mb-3">
+          <img
+            src="assets/images/logo-dark.png"
+            alt=""
+            height="22"
+            class="dark"
+          />
+          <img
+            src="assets/images/logo-light.png"
+            alt=""
+            height="22"
+            class="light"
+          />
+        </h5>
+        <p class="footer_content mb-4">
+          Performance reviews are also called performance appraisals or
+          performance evaluations.
+        </p>
+        <ul
+          class="footer_social_media list-unstyled hstack gap-2 flex-wrap mb-0"
+        >
+          <li>
+            <a href="#!"><i class="bi bi-whatsapp"></i></a>
+          </li>
+          <li>
+            <a href="#!"><i class="bi bi-instagram"></i></a>
+          </li>
+          <li>
+            <a href="#!"><i class="bi bi-google"></i></a>
+          </li>
+          <li>
+            <a href="#!"><i class="bi bi-twitter"></i></a>
+          </li>
+        </ul>
+      </div>
+      <!-- .col-->
+      <div class="col-lg-2 col-sm-6">
+        <h6 class="footer_title mb-3">Resources</h6>
+        <div class="footer_menu_list vstack list-unstyled mb-0">
+          <a href="#!">About Us</a>
+          <a href="#!">Out Team</a>
+          <a href="#!">Shop</a>
+          <a href="#!">Contact</a>
+        </div>
+      </div>
+      <!-- .col-->
+      <div class="col-lg-2 col-sm-6">
+        <h6 class="footer_title mb-3">For Jobs</h6>
+        <div class="footer_menu_list vstack list-unstyled mb-0">
+          <a href="#!">Job Lists</a>
+          <a href="#!">My Bookmarks</a>
+          <a href="#!">Job Details</a>
+          <a href="#!">Job Alerts</a>
+        </div>
+      </div>
+      <!-- .col-->
+      <div class="col-lg-2 col-sm-6">
+        <h6 class="footer_title mb-3">For Jobs</h6>
+        <div class="footer_menu_list vstack list-unstyled mb-0">
+          <a href="#!">Job Lists</a>
+          <a href="#!">My Bookmarks</a>
+          <a href="#!">Job Details</a>
+          <a href="#!">Job Alerts</a>
+        </div>
+      </div>
+      <!-- .col-->
+      <div class="col-lg-3 col-sm-6">
+        <h6 class="footer_title mb-3">Download App</h6>
+        <p class="footer_content">Download our Apps..!</p>
+        <div class="d-flex gap-2 flex-wrap">
+          <a href="#!"
+            ><img src="assets/images/google_play.png" alt="" height="40"
+          /></a>
+          <a href="#!"
+            ><img src="assets/images/app_store.png" alt="" height="40"
+          /></a>
+        </div>
+      </div>
+      <!-- .col-->
+    </div>
+  </div>
+</footer>
+
+<div class="footer_sub">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-lg-12">
+        <p class="footer_sub_content font-15 mb-0">
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          h <b>Hiresy</b> Powered By
+          <a
+            href="http://www.objectthemes.com/"
+            target="_blank"
+            class="text-decoration-underline"
+            >ObjectThemes</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
