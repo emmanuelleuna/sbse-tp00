@@ -28,6 +28,7 @@ export class RegisterComponent {
   }
 
   // variables =========================
+  isLoading: boolean = false;
   selectedProfile = "jobseeker"
   firstName: string = '';
   lastName: string = '';
@@ -37,6 +38,10 @@ export class RegisterComponent {
 
   // functions =========================
 
+  /**
+   * Register function
+   * @returns 
+   */
   register() {
     // check empty field
     if (
@@ -49,6 +54,88 @@ export class RegisterComponent {
       this._notifieService.notify('error', 'Please fill all fields');
       return;
     }
+
+    // check password match
+    if (this.password !== this.confirmPassword) {
+      this._notifieService.notify('error', 'Passwords do not match');
+      return;
+    }
+    // start loading
+    this.isLoading = true;
+
+    // call register api depending on profile
+    if (this.selectedProfile === 'jobseeker') {
+      console.log("register jobseeker");
+      this._appService.registerJobSeeker({
+        username: this.username,
+        password: this.password,
+        firstName: this.firstName,
+        lastName: this.lastName
+      }).subscribe(
+        (response) => {
+          // stop loading
+          this.isLoading = false;
+          if (response.status === 'success') {
+            this._notifieService.notify('success', 'Registration successful');
+            this._router.navigateByUrl('/login');
+          } else {
+            this._notifieService.notify('error', response.message);
+          }
+        }
+        , (error) => {
+          // stop loading
+          this.isLoading = false;
+          this._notifieService.notify('error', 'Registration failed');
+        }
+      );
+    } else {
+      console.log("register employee");
+
+      this._appService.registerEmployer({
+        username: this.username,
+        password: this.password,
+        firstName: this.firstName,
+        lastName: this.lastName
+      }).subscribe(
+        (response) => {
+          // stop loading
+          this.isLoading = false;
+          if (response.status === 'success') {
+            this._notifieService.notify('success', 'Registration successful');
+            this._router.navigateByUrl('/login');
+          } else {
+            this._notifieService.notify('error', response.message);
+          }
+        }
+        , (error) => {
+          // stop loading
+          this.isLoading = false;
+          this._notifieService.notify('error', 'Registration failed');
+        }
+      );
+    }
+    // this._appService.registerEmployer({
+    //   username: this.username,
+    //   password: this.password,
+    //   firstName: this.firstName,
+    //   lastName: this.lastName
+    // }).subscribe(
+    //   (response) => {
+    //     // stop loading
+    //     this.isLoading = false;
+    //     if (response.status === 'success') {
+    //       this._notifieService.notify('success', 'Registration successful');
+    //       this._router.navigateByUrl('/login');
+    //     } else {
+    //       this._notifieService.notify('error', response.message);
+    //     }
+    //   }
+    //   , (error) => {
+    //     // stop loading
+    //     this.isLoading = false;
+    //     this._notifieService.notify('error', 'Registration failed');
+    //   }
+    // );
 
   }
 

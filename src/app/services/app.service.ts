@@ -56,24 +56,45 @@ export class AppService {
     this.user = user;
     localStorage.setItem('user', JSON.stringify(user));
   }
+  
   // ------------------ API Routes ------------------
 
   // 1. Enregistrement employeur
-  registerEmployer(data: { username: string; password: string }): Observable<any> {
+  /**
+   * Enregistrement d'un employeur
+   * @param data 
+   * @returns 
+   */
+  registerEmployer(data: { username: string; password: string; firstName: string; lastName: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/register/employer`, data);
   }
 
   // 2. Enregistrement chercheur d'emploi
-  registerJobSeeker(data: { username: string; password: string }): Observable<any> {
+  /**
+   * Enregistrement d'un chercheur d'emploi
+   * @param data 
+   * @returns 
+   */
+  registerJobSeeker(data: { username: string; password: string; firstName: string; lastName: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/register/job_seeker`, data);
   }
 
   // 3. Connexion
+  /**
+   * Connexion d'un utilisateur
+   * @param data 
+   * @returns 
+   */
   login(data: { username: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, data);
   }
 
   // 4. Création d'une offre d'emploi (employeur)
+  /**
+   * Création d'une offre d'emploi
+   * @param data 
+   * @returns 
+   */
   createJobOffer(data: { title: string; description: string; criteria: any }): Observable<any> {
     return this.http.post(`${this.apiUrl}/job_offers`, data, {
       headers: this.getAuthHeaders()
@@ -81,6 +102,11 @@ export class AppService {
   }
 
   // 5. Postuler à une offre d'emploi (chercheur)
+  /**
+   * Postuler à une offre d'emploi
+   * @param job_offer_id 
+   * @returns 
+   */
   applyToJob(job_offer_id: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/apply`, { job_offer_id }, {
       headers: this.getAuthHeaders()
@@ -88,6 +114,11 @@ export class AppService {
   }
 
   // 6. Analyse des candidatures
+  /**
+   * Analyse des candidatures
+   * @param job_offer_id 
+   * @returns 
+   */
   analyzeCandidatures(job_offer_id: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/analyze/${job_offer_id}`, {}, {
       headers: this.getAuthHeaders()
