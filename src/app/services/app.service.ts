@@ -56,7 +56,7 @@ export class AppService {
     this.user = user;
     localStorage.setItem('user', JSON.stringify(user));
   }
-  
+
   // ------------------ API Routes ------------------
 
   // 1. Enregistrement employeur
@@ -95,7 +95,7 @@ export class AppService {
    * @param data 
    * @returns 
    */
-  createJobOffer(data: { title: string; description: string; criteria: any }): Observable<any> {
+  createJobOffer(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/job_offers`, data, {
       headers: this.getAuthHeaders()
     });

@@ -1,359 +1,359 @@
-<!DOCTYPE html>
-<html
-  lang="en"
-  x-data="{ darkTheme: false }"
-  x-init="
-const htmlTag = document.querySelector('html');
-$watch('darkTheme', value => {
-    htmlTag.setAttribute('data-bs-theme', value ? 'dark' : 'light');
-})
-"
->
-  <!-- Mirrored from hiresy.netlify.app/html/admin-create-post by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:12:08 GMT -->
-  <!-- Added by HTTrack --><meta
-    http-equiv="content-type"
-    content="text/html;charset=UTF-8"
-  /><!-- /Added by HTTrack -->
-  <head>
-    <meta charset="utf-8" />
-    <title>Create Post</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta content="Objedctthemes" name="author" />
-    <meta content="Hiresy" name="description" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+<div class="position-relative">
+  <div class="admin-page-wrapper">
+    <h5 class="mb-4">Create a New Job Listing!</h5>
 
-    <!-- <link rel="stylesheet" href="assets/plugin/apexcharts/apexcharts.css"> -->
-
-    <!--------------Bootstrap Icon----------------->
-    <!-- <link href="assets/css/bootstrap-icons.min.css" rel="stylesheet"> -->
-    <!--------------Bootstrap CSS----------------->
-    <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!--------------Main CSS----------------->
-    <!-- <link href="assets/css/main.min.css" rel="stylesheet"> -->
-  </head>
-
-  <body class="bg-light">
-    <div>
-      <div class="position-relative">
-        <div class="admin-page-wrapper">
-          <h5 class="mb-4">Create a New Job Listing!</h5>
-
-          <div class="row">
-            <div class="col-lg-12">
-              <div
-                class="card"
-                :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }"
-              >
-                <div
-                  class="card-header border-0 pb-2 d-flex align-items-center"
-                >
-                  <h6 class="font-16 mb-0 flex-grow-1">Create a Post</h6>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header border-0 pb-2 d-flex align-items-center">
+            <h6 class="font-16 mb-0 flex-grow-1">Create a Post</h6>
+          </div>
+          <div class="card-body">
+            <div>
+              <div class="row g-3">
+                <!-- job title -->
+                <div class="col-lg-12">
+                  <div>
+                    <label for="jobTitle" class="form-label font-15 fw-medium"
+                      >Job Title
+                      <span class="text-danger fw-bold">*</span></label
+                    >
+                    <input
+                      [(ngModel)]="job_title"
+                      type="text"
+                      class="form-control"
+                      id="jobTitle"
+                      placeholder="Job title"
+                    />
+                  </div>
                 </div>
-                <div class="card-body">
-                  <form action="#!">
-                    <div class="row g-3">
-                      <div class="col-lg-12">
-                        <div>
-                          <label
-                            for="jobTitle"
-                            class="form-label font-15 fw-medium"
-                            >Job Title</label
+
+                <!-- job description -->
+                <div class="col-lg-12">
+                  <div>
+                    <label
+                      for="jobDescription"
+                      class="form-label font-15 fw-medium"
+                      >Job Description
+                      <span class="text-danger fw-bold">*</span></label
+                    >
+                    <textarea
+                      [(ngModel)]="job_description"
+                      class="form-control"
+                      id="jobDescription"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <!-- job criteria -->
+                <div class="col-lg-12">
+                  <!-- add criteria btn area -->
+                  <div class="pb-3">
+                    <button
+                      (click)="addCriteria()"
+                      class="btn btn-outline-secondary btn-sm"
+                    >
+                      <i class="bi bi-plus"></i>
+                      Add criteria
+                    </button>
+                  </div>
+
+                  <table class="table table-hover table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Criteria</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">
+                          Importance
+
+                          <button
+                            type="button"
+                            class="btn btn-primary btn-sm rounded-pill p-1 px-2 ms-2"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
                           >
+                            Help
+                          </button>
+                        </th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody id="job-criteria-table">
+                      <tr *ngFor="let criteria of criteriaList; let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>
+                          <input
+                            [disabled]="!criteria.editable"
+                            type="text"
+                            class="form-control"
+                            placeholder="Criteria"
+                            [(ngModel)]="criteria.title"
+                          />
+                        </td>
+                        <td>
                           <input
                             type="text"
                             class="form-control"
-                            id="jobTitle"
-                            placeholder="Job title"
+                            placeholder="Value"
+                            [(ngModel)]="criteria.value"
                           />
-                        </div>
-                      </div>
-                      <div class="col-lg-12">
-                        <div>
-                          <label
-                            for="jobDescription"
-                            class="form-label font-15 fw-medium"
-                            >Job Description</label
-                          >
-                          <textarea
-                            class="form-control"
-                            id="jobDescription"
-                            rows="3"
-                          ></textarea>
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div>
-                          <label
-                            for="emailInput"
-                            class="form-label font-15 fw-medium"
-                            >Email Address</label
-                          >
-                          <input
-                            type="email"
-                            class="form-control"
-                            id="emailInput"
-                            placeholder="Email address"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div>
-                          <label
-                            for="userNameInput"
-                            class="form-label font-15 fw-medium"
-                            >Username</label
-                          >
+                        </td>
+                        <td>
                           <input
                             type="text"
                             class="form-control"
-                            id="userNameInput"
-                            placeholder="Username"
+                            placeholder="Weight"
+                            [(ngModel)]="criteria.weight"
                           />
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div>
-                          <label
-                            for="jobTypeInput"
-                            class="form-label font-15 fw-medium"
-                            >Job Type</label
+                        </td>
+                        <td>
+                          <button
+                            (click)="removeCriteria(i)"
+                            [disabled]="!criteria.editable"
+                            class="btn btn-sm btn-danger"
                           >
-                          <select
-                            class="form-select"
-                            aria-label="Default select example"
-                            id="jobTypeInput"
-                          >
-                            <option selected>Select Job Type</option>
-                            <option value="Full Time">Full Time</option>
-                            <option value="Part Time">Part Time</option>
-                            <option value="Freelancer">Freelancer</option>
-                            <option value="Internship">Internship</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div>
-                          <label
-                            for="offeredSalaryInput"
-                            class="form-label font-15 fw-medium"
-                            >Offered Salary</label
-                          >
-                          <select
-                            class="form-select"
-                            aria-label="Default select example"
-                            id="offeredSalaryInput"
-                          >
-                            <option selected>Select Offered Salary</option>
-                            <option value="$1000">$1000</option>
-                            <option value="$2000">$2000</option>
-                            <option value="$3000">$3000</option>
-                            <option value="$4000">$4000</option>
-                            <option value="$5000">$5000</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div>
-                          <label
-                            for="genderInput"
-                            class="form-label font-15 fw-medium"
-                            >Gender</label
-                          >
-                          <select
-                            class="form-select"
-                            aria-label="Default select example"
-                            id="genderInput"
-                          >
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Others">Other</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div>
-                          <label
-                            for="experienceInput"
-                            class="form-label font-15 fw-medium"
-                            >Experience</label
-                          >
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="experienceInput"
-                            placeholder="Experience"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-lg-12">
-                        <div>
-                          <label
-                            for="deadlineDateInput"
-                            class="form-label font-15 fw-medium"
-                            >Application Deadline Date</label
-                          >
-                          <input
-                            type="date"
-                            class="form-control"
-                            id="deadlineDateInput"
-                            placeholder="Experience"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-lg-12">
-                        <div>
-                          <label
-                            for="locationInput"
-                            class="form-label font-15 fw-medium"
-                            >Location</label
-                          >
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="locationInput"
-                            placeholder="Location"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-lg-12 text-end">
-                        <button type="button" class="btn btn-secondary">
-                          Submit
-                        </button>
-                      </div>
+                            <i class="bi bi-x"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Available place -->
+                <div class="col-lg-4">
+                  <div>
+                    <label for="emailInput" class="form-label font-15 fw-medium"
+                      >Available place
+                      <span class="text-danger fw-bold">*</span></label
+                    >
+                    <input
+                      [(ngModel)]="job_available_place"
+                      type="number"
+                      class="form-control"
+                      placeholder="Available place"
+                    />
+                  </div>
+                </div>
+
+                <!-- job work time -->
+                <div class="col-lg-4">
+                  <div>
+                    <label for="workTime" class="form-label font-15 fw-medium"
+                      >Work time
+                      <span class="text-danger fw-bold">*</span></label
+                    >
+                    <select
+                      [(ngModel)]="job_work_time"
+                      class="form-select"
+                      aria-label="Default select example"
+                      id="workTime"
+                    >
+                      <option selected disabled>Select work time</option>
+                      <option value="Full Time">Full Time</option>
+                      <option value="Part Time">Part Time</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- job work place -->
+                <div class="col-lg-4">
+                  <div>
+                    <label for="workPlace" class="form-label font-15 fw-medium"
+                      >Work place
+                      <span class="text-danger fw-bold">*</span></label
+                    >
+                    <select
+                      [(ngModel)]="job_work_place"
+                      class="form-select"
+                      aria-label="Default select example"
+                      id="workPlace"
+                    >
+                      <option selected disabled>Select work place</option>
+                      <option value="On-site">On-site</option>
+                      <option value="Remote">Remote</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- job email contact -->
+                <div class="col-lg-4">
+                  <div>
+                    <label for="emailInput" class="form-label font-15 fw-medium"
+                      >Email Address
+                      <span class="text-danger fw-bold">*</span></label
+                    >
+                    <input
+                      [(ngModel)]="job_email_address"
+                      type="email"
+                      class="form-control"
+                      id="emailInput"
+                      placeholder="Email address"
+                    />
+                  </div>
+                </div>
+
+                <!-- job phone contact -->
+                <div class="col-lg-4">
+                  <div>
+                    <label for="telinput" class="form-label font-15 fw-medium"
+                      >Phone Address
+                      <span class="text-danger fw-bold">*</span></label
+                    >
+                    <input
+                      [(ngModel)]="job_phone_address"
+                      type="tel"
+                      class="form-control"
+                      id="telinput"
+                      placeholder="Phone address"
+                    />
+                  </div>
+                </div>
+
+                <!-- job author -->
+                <div class="col-lg-4">
+                  <div>
+                    <label
+                      for="userNameInput"
+                      class="form-label font-15 fw-medium"
+                      >Author <span class="text-danger fw-bold">*</span></label
+                    >
+                    <input
+                      [(ngModel)]="job_author"
+                      type="text"
+                      class="form-control"
+                      id="userNameInput"
+                      placeholder="Author name"
+                    />
+                  </div>
+                </div>
+
+                <!-- job salary -->
+                <div class="col-lg-6">
+                  <div>
+                    <label
+                      for="jobTypeInput"
+                      class="form-label font-15 fw-medium"
+                      >Job Salary
+                      <span class="text-danger fw-bold">*</span></label
+                    >
+                    <div class="input-group mb-3">
+                      <input
+                        [(ngModel)]="job_salary_min"
+                        type="number"
+                        class="form-control"
+                        placeholder="From (min)"
+                      />
+                      <span class="input-group-text">$</span>
+                      <input
+                        [(ngModel)]="job_salary_max"
+                        type="number"
+                        class="form-control"
+                        placeholder="To (max)"
+                        aria-label="Server"
+                      />
                     </div>
-                  </form>
+                  </div>
+                </div>
+
+                <!-- job deadline -->
+                <div class="col-lg-6">
+                  <div>
+                    <label
+                      for="deadlineDateInput"
+                      class="form-label font-15 fw-medium"
+                      >Application Deadline Date
+                      <span class="text-danger fw-bold">*</span></label
+                    >
+                    <input
+                      [(ngModel)]="job_deadline"
+                      type="date"
+                      class="form-control"
+                      id="deadlineDateInput"
+                      placeholder="Application deadline"
+                    />
+                  </div>
+                </div>
+
+                <!-- job location -->
+                <div class="col-lg-12">
+                  <div>
+                    <label
+                      for="locationInput"
+                      class="form-label font-15 fw-medium"
+                      >Location
+                      <span
+                        *ngIf="job_work_place == 'On-site'"
+                        class="text-danger fw-bold"
+                        >*</span
+                      ></label
+                    >
+                    <input
+                      [(ngModel)]="job_location"
+                      type="text"
+                      class="form-control"
+                      id="locationInput"
+                      placeholder="Location"
+                    />
+                  </div>
+                </div>
+
+                <!-- job btn submit -->
+                <div class="col-lg-12 text-end">
+                  <button
+                    [disabled]="isLoading"
+                    (click)="createJobOffer()"
+                    type="button"
+                    class="btn btn-secondary"
+                  >
+                    <span
+                      *ngIf="isLoading"
+                      class="spinner-border spinner-border-sm me-2"
+                    ></span>
+                    Submit
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- <div class="admin-footer w-100 border-top position-absolute bottom-0 start-0 bottom-0">
-                <div class="row align-items-center justify-content-center w-100">
-                    <div class="col-lg-6 text-center">
-                        <p class="font-15 mb-0"><script>document.write(new Date().getFullYear())</script> ... <b>Hiresy</b> Powered By <a href="http://www.objectthemes.com/" target="_blank" class="text-decoration-underline">ObjectThemes</a></p>
-                    </div>
-                </div>
-            </div> -->
       </div>
     </div>
+  </div>
+</div>
+<notifier-container></notifier-container>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="createModal"
-      tabindex="-1"
-      aria-labelledby="createModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="createModalLabel">
-              Create Candidate
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form action="#!">
-              <div class="row g-3">
-                <div class="col-lg-12">
-                  <div>
-                    <label for="formFile" class="form-label font-15 fw-medium"
-                      >Upload Profile Image</label
-                    >
-                    <input class="form-control" type="file" id="formFile" />
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div>
-                    <label for="fullName" class="form-label font-15 fw-medium"
-                      >Full Name</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="fullName"
-                      placeholder="Enter name"
-                    />
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div>
-                    <label for="roleInput" class="form-label font-15 fw-medium"
-                      >Role</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="roleInput"
-                      placeholder="Role"
-                    />
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div>
-                    <label for="roleInput" class="form-label font-15 fw-medium"
-                      >Email Address</label
-                    >
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="roleInput"
-                      placeholder="Email address"
-                    />
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div>
-                    <label
-                      for="contactNumberInput"
-                      class="form-label font-15 fw-medium"
-                      >Contact Number</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="contactNumberInput"
-                      placeholder="Contact number"
-                    />
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Add Candidate</button>
-          </div>
-        </div>
+<!-- job importance helper modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Criteria importance</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        This field is used to indicate the level of urgency or priority of the
+        criterion. It must be unique among the criteria in the list to ensure
+        clear management of priorities.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
       </div>
     </div>
-
-    <!-- JAVASCRIPT -->
-    <!-- <script src="assets/plugin/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-
-    <!-- <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script> -->
-
-    <!-- <script src="assets/js/manage-jobs.init.js"></script> -->
-    <!-- Main js -->
-    <!-- <script src="assets/js/admin.init.js"></script> -->
-  </body>
-
-  <!-- Mirrored from hiresy.netlify.app/html/admin-create-post by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:12:08 GMT -->
-</html>
+  </div>
+</div>
