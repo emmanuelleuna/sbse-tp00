@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NotifierModule, NotifierService } from 'angular-notifier';
 import { AppService } from '../../../services/app.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-manage-candidates-result',
@@ -23,13 +24,14 @@ export class ManageCandidatesResultComponent {
     private _router: Router,
     private _notifierService: NotifierService,
     private _activeRoute: ActivatedRoute,
-    private _location: Location
+    private _location: Location,
   ) {
 
   }
 
   // variables ============================================
-  selectedCandidate: any[] = []
+  selectedCandidates: any[] = []
+  isMessageSending = false;
   job_id = null
 
   // function =============================================
@@ -52,8 +54,28 @@ export class ManageCandidatesResultComponent {
     this._location.back()
   }
 
-  sendMessageToCandidate(){
-    
+  sendMessageToCandidate() {
+    this.selectedCandidates.map((c, index) => {
+      let data = {
+        id_sender: 0,
+        id_receiver: 1,
+        message: "",
+        created_at: new Date()
+      }
+
+      this._appService.sendMessage(data).subscribe((response) => {
+
+      }, (error) => {
+        // notify
+        this._notifierService.notify('error', "An error occurred")
+
+        // log
+        console.error(error);
+        
+
+      })
+    })
+
   }
 
 

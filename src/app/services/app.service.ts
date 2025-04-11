@@ -142,6 +142,14 @@ export class AppService {
   }
 
   /**
+   * Send message
+   * @returns 
+   */
+  sendMessage(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/sendmessage`, data);
+  }
+
+  /**
    * https://1d6d-129-0-189-50.ngrok-free.app/
    * 
 

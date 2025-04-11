@@ -28,6 +28,7 @@ export class CreateJobComponent {
 
   // variables =========================
   isLoading = false;
+  job_compagny: string = "";
   job_title: string = "";
   job_description: string = "";
   criteriaList: JobCriteria[] = [];
@@ -85,25 +86,27 @@ export class CreateJobComponent {
   createJobOffer() {
 
     let data = {
-      job_title: this.job_title,
-      job_description: this.job_description,
-      job_available_place: this.job_available_place,
-      job_work_time: this.job_work_time,
-      job_work_place: this.job_work_place,
-      job_email_address: this.job_email_address,
-      job_phone_address: this.job_phone_address,
-      job_author: this.job_author,
-      job_salary_min: this.job_salary_min,
-      job_salary_max: this.job_salary_max,
-      job_deadline: this.job_deadline,
-      criteria: this.criteriaList,
-      job_location: this.job_location
+      "job_compagny": this.job_compagny,
+      "job_title": this.job_title,
+      "job_description": this.job_description,
+      "job_available_place": this.job_available_place,
+      "job_work_time": this.job_work_time,
+      "job_work_place": this.job_work_place,
+      "job_email_address": this.job_email_address,
+      "job_phone_address": this.job_phone_address,
+      "job_author": this.job_author,
+      "job_salary_min": this.job_salary_min,
+      "job_salary_max": this.job_salary_max,
+      "job_deadline": this.job_deadline,
+      "criteria": this.criteriaList,
+      "job_location": this.job_location
     }
 
     console.log(data);
 
     // check empty field
     if (
+      !this.job_compagny.trim() ||
       !this.job_title.trim() ||
       !this.job_description.trim() ||
       this.job_available_place < 0 ||
