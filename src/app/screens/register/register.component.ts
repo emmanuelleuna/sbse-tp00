@@ -86,6 +86,10 @@ export class RegisterComponent {
           // stop loading
           this.isLoading = false;
           this._notifieService.notify('error', 'Registration failed');
+
+          // log
+          console.log(error);
+
         }
       );
     } else {
@@ -111,6 +115,9 @@ export class RegisterComponent {
           // stop loading
           this.isLoading = false;
           this._notifieService.notify('error', 'Registration failed');
+
+          // log
+          console.log(error);
         }
       );
     }

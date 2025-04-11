@@ -9,7 +9,7 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'https://1d6d-129-0-189-50.ngrok-free.app'; // À adapter selon ton backend
+  private apiUrl = 'https://092e-129-0-189-48.ngrok-free.app/'; // À adapter selon ton backend
 
 
   /**
@@ -107,8 +107,8 @@ export class AppService {
    * @param job_offer_id 
    * @returns 
    */
-  applyToJob(job_offer_id: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/apply`, { job_offer_id }, {
+  applyToJob(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/apply`, data, {
       headers: this.getAuthHeaders()
     });
   }
@@ -126,45 +126,61 @@ export class AppService {
   }
 
   /**
+   * Get job list
+   * @returns 
+   */
+  getJobList(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/get_all_job_offers`);
+  }
+
+  /**
+   * Get job candidat list
+   * @returns 
+   */
+  getJobCandidatList(job_id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/get_job_candidat_list`);
+  }
+
+  /**
    * https://1d6d-129-0-189-50.ngrok-free.app/
    * 
 
 
 Voici la liste des routes pour interagir avec votre API frontend :
 
-1. Enregistrement d'un employeur : --------------------------------------
+1. Enregistrement d'un employeur : -------------------------------------- ok
    - Route : /register/employer 
    - Méthode : POST
    - Description : Permet à un employeur de s'enregistrer.
    - Données requises : username, password
 
-2. Enregistrement d'un chercheur d'emploi : --------------------------------------
+2. Enregistrement d'un chercheur d'emploi : -------------------------------------- ok
    - Route : /register/job_seeker
    - Méthode : POST
    - Description : Permet à un chercheur d'emploi de s'enregistrer.
    - Données requises : username, password
 
-3. Connexion : --------------------------------------
+3. Connexion : -------------------------------------- ok
    - Route : /login
    - Méthode : POST
    - Description : Permet à un utilisateur (employeur ou chercheur d'emploi) de se connecter et d'obtenir un jeton d'accès.
    - Données requises : username, password
 
-4. Création d'une offre d'emploi :
+4. Création d'une offre d'emploi : --------------------------------------
    - Route : /job_offers
    - Méthode : POST
    - Description : Permet à un employeur de créer une nouvelle offre d'emploi.
    - Données requises : title, description, criteria
    - Authentification : Requiert un jeton d'accès valide.
 
-5. Candidature à une offre d'emploi :
+5. Candidature à une offre d'emploi : --------------------------------------
    - Route : /apply
    - Méthode : POST
    - Description : Permet à un chercheur d'emploi de postuler à une offre d'emploi.
    - Données requises : job_offer_id
    - Authentification : Requiert un jeton d'accès valide.
 
-6. Analyse des candidatures :
+6. Analyse des candidatures : --------------------------------------
    - Route : /analyze/<int:job_offer_id>
    - Méthode : POST
    - Description : Permet à un employeur d'analyser les candidatures pour une offre d'emploi spécifique.

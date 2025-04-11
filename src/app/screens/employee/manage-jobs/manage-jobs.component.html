@@ -1,225 +1,164 @@
-<!DOCTYPE html>
-<html
-  lang="en"
-  x-data="{ darkTheme: false }"
-  x-init="
-const htmlTag = document.querySelector('html');
-$watch('darkTheme', value => {
-    htmlTag.setAttribute('data-bs-theme', value ? 'dark' : 'light');
-})
-"
->
-  <!-- Mirrored from hiresy.netlify.app/html/admin-manage-jobs by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:12:07 GMT -->
-  <!-- Added by HTTrack --><meta
-    http-equiv="content-type"
-    content="text/html;charset=UTF-8"
-  /><!-- /Added by HTTrack -->
-  <head>
-    <meta charset="utf-8" />
-    <title>Manage Jobs</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta content="Objedctthemes" name="author" />
-    <meta content="Hiresy - Job" name="description" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+<div class="position-relative">
+  <div class="admin-page-wrapper">
+    <h5 class="mb-4">Manage jobs!</h5>
 
-    <!-- <link rel="stylesheet" href="assets/plugin/apexcharts/apexcharts.css"> -->
-
-    <!--------------Bootstrap Icon----------------->
-    <!-- <link href="assets/css/bootstrap-icons.min.css" rel="stylesheet"> -->
-    <!--------------Bootstrap CSS----------------->
-    <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!--------------Main CSS----------------->
-    <!-- <link href="assets/css/main.min.css" rel="stylesheet"> -->
-  </head>
-
-  <body class="bg-light">
-    <div>
-      <div class="position-relative">
-        <div class="admin-page-wrapper">
-          <h5 class="mb-4">Manage jobs!</h5>
-
-          <div class="row">
-            <div class="col-lg-12">
-              <div
-                class="card"
-                :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }"
-              >
-                <div
-                  class="card-header border-0 pb-2 d-flex align-items-center"
-                >
-                  <h6 class="font-16 mb-0 flex-grow-1">Jobs Listings</h6>
-                  <div class="flex-shrink-0">
-                    <button class="btn btn-sm btn-primary" type="button">
-                      <i class="bi bi-plus-circle me-1"></i> Add Job
-                    </button>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div
-                    class="table-responsive"
-                    x-data="data()"
-                    x-init="initialize"
+    <div class="row">
+      <div class="col-lg-12">
+        <div
+          class="card"
+          :class="{ 'border': darkTheme, 'border-0 shadow-md': !darkTheme }"
+        >
+          <div
+            class="card-header border-0 pb-2 d-flex align-items-center"
+          >
+            <h6 class="font-16 mb-0 flex-grow-1">Jobs Listings</h6>
+            <div class="flex-shrink-0">
+              <button class="btn btn-sm btn-primary" type="button">
+                <i class="bi bi-plus-circle me-1"></i> Add Job
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div
+              class="table-responsive"
+              x-data="data()"
+              x-init="initialize"
+            >
+              <table class="table font-14 align-middle">
+                <thead>
+                  <tr>
+                    <th click="sortByColumn('Title')">Title</th>
+                    <th click="sortByColumn('Applications')">
+                      Applications
+                    </th>
+                    <th click="sortByColumn('Date Expired')">
+                      Date Expired
+                    </th>
+                    <th click="sortByColumn('Status')">Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody x-ref="tbody">
+                  <template
+                    x-for="(row, index) in sortedData"
+                    :key="index"
                   >
-                    <table class="table font-14 align-middle">
-                      <thead>
-                        <tr>
-                          <th click="sortByColumn('Title')">Title</th>
-                          <th click="sortByColumn('Applications')">
-                            Applications
-                          </th>
-                          <th click="sortByColumn('Date Expired')">
-                            Date Expired
-                          </th>
-                          <th click="sortByColumn('Status')">Status</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody x-ref="tbody">
-                        <template
-                          x-for="(row, index) in sortedData"
-                          :key="index"
+                    <tr>
+                      <td>
+                        <a
+                          :href="row['Link']"
+                          class="d-inline-flex align-items-center gap-2"
                         >
-                          <tr>
-                            <td>
-                              <a
-                                :href="row['Link']"
-                                class="d-inline-flex align-items-center gap-2"
-                              >
-                                <img
-                                  :src="row['ImageSrc']"
-                                  alt=""
-                                  height="40"
-                                  class="rounded"
-                                />
-                                <div>
-                                  <h6
-                                    class="mb-2 font-14"
-                                    x-text="row['Title']"
-                                  ></h6>
-                                  <ul
-                                    class="d-flex align-items-center gap-2 list-unstyled mb-0 font-13 text-muted flex-wrap"
-                                  >
-                                    <li>
-                                      <i
-                                        class="bi bi-geo-alt align-baseline me-1"
-                                      ></i>
-                                      <span x-text="row['Location']"></span>
-                                    </li>
-                                    <li class="vr"></li>
-                                    <li>
-                                      <i
-                                        class="bi bi-cash align-baseline me-1"
-                                      ></i>
-                                      <span x-text="row['Salary']"></span>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </a>
-                            </td>
-                            <td>
-                              <a
-                                :href="row['ApplicationsLink']"
-                                x-text="row['Applications']"
-                              ></a>
-                            </td>
-                            <td x-text="row['Date Expired']"></td>
-                            <td x-html="row['Status']"></td>
-                            <td>
-                              <div class="d-flex gap-3 flex-wrap">
-                                <a href="#!" class="link-primary"
-                                  ><i class="bi bi-eye"></i
-                                ></a>
-                                <a href="#!" class="link-secondary"
-                                  ><i class="bi bi-pencil-square"></i
-                                ></a>
-                                <a href="#!" class="link-danger"
-                                  ><i class="bi bi-trash3"></i
-                                ></a>
-                              </div>
-                            </td>
-                          </tr>
-                        </template>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="row align-items-center">
-                    <div class="col-lg-6">
-                      <p
-                        class="mb-0 text-muted text-center text-lg-start font-14 mb-3 mb-lg-0"
+                          <img
+                            :src="row['ImageSrc']"
+                            alt=""
+                            height="40"
+                            class="rounded"
+                          />
+                          <div>
+                            <h6
+                              class="mb-2 font-14"
+                              x-text="row['Title']"
+                            ></h6>
+                            <ul
+                              class="d-flex align-items-center gap-2 list-unstyled mb-0 font-13 text-muted flex-wrap"
+                            >
+                              <li>
+                                <i
+                                  class="bi bi-geo-alt align-baseline me-1"
+                                ></i>
+                                <span x-text="row['Location']"></span>
+                              </li>
+                              <li class="vr"></li>
+                              <li>
+                                <i
+                                  class="bi bi-cash align-baseline me-1"
+                                ></i>
+                                <span x-text="row['Salary']"></span>
+                              </li>
+                            </ul>
+                          </div>
+                        </a>
+                      </td>
+                      <td>
+                        <a
+                          :href="row['ApplicationsLink']"
+                          x-text="row['Applications']"
+                        ></a>
+                      </td>
+                      <td x-text="row['Date Expired']"></td>
+                      <td x-html="row['Status']"></td>
+                      <td>
+                        <div class="d-flex gap-3 flex-wrap">
+                          <a href="#!" class="link-primary"
+                            ><i class="bi bi-eye"></i
+                          ></a>
+                          <a href="#!" class="link-secondary"
+                            ><i class="bi bi-pencil-square"></i
+                          ></a>
+                          <a href="#!" class="link-danger"
+                            ><i class="bi bi-trash3"></i
+                          ></a>
+                        </div>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <p
+                  class="mb-0 text-muted text-center text-lg-start font-14 mb-3 mb-lg-0"
+                >
+                  Showing <b>36</b> of <b>497</b> Jobs
+                </p>
+              </div>
+              <div class="col-lg-6">
+                <nav aria-label="Page navigation example">
+                  <ul
+                    class="pagination justify-content-center justify-content-lg-end mb-0 pagination-sm"
+                  >
+                    <li class="page-item">
+                      <a
+                        class="page-link square-xs"
+                        href="#"
+                        aria-label="Previous"
                       >
-                        Showing <b>36</b> of <b>497</b> Jobs
-                      </p>
-                    </div>
-                    <div class="col-lg-6">
-                      <nav aria-label="Page navigation example">
-                        <ul
-                          class="pagination justify-content-center justify-content-lg-end mb-0 pagination-sm"
-                        >
-                          <li class="page-item">
-                            <a
-                              class="page-link square-xs"
-                              href="#"
-                              aria-label="Previous"
-                            >
-                              <i class="bi bi-chevron-left"></i>
-                            </a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link square-xs" href="#">1</a>
-                          </li>
-                          <li class="page-item active">
-                            <a class="page-link square-xs" href="#">2</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link square-xs" href="#">3</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link square-xs" href="#">4</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link square-xs" href="#">5</a>
-                          </li>
-                          <li class="page-item">
-                            <a
-                              class="page-link square-xs"
-                              href="#"
-                              aria-label="Next"
-                            >
-                              <i class="bi bi-chevron-right"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                  </div>
-                </div>
+                        <i class="bi bi-chevron-left"></i>
+                      </a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link square-xs" href="#">1</a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link square-xs" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link square-xs" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link square-xs" href="#">4</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link square-xs" href="#">5</a>
+                    </li>
+                    <li class="page-item">
+                      <a
+                        class="page-link square-xs"
+                        href="#"
+                        aria-label="Next"
+                      >
+                        <i class="bi bi-chevron-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
               </div>
             </div>
           </div>
         </div>
-        <!-- <div class="admin-footer w-100 border-top position-absolute bottom-0 start-0 bottom-0">
-                <div class="row align-items-center justify-content-center w-100">
-                    <div class="col-lg-6 text-center">
-                        <p class="font-15 mb-0"><script>document.write(new Date().getFullYear())</script> ... <b>Hiresy</b> Powered By <a href="http://www.objectthemes.com/" target="_blank" class="text-decoration-underline">ObjectThemes</a></p>
-                    </div>
-                </div>
-            </div> -->
       </div>
     </div>
-
-    <!-- JAVASCRIPT -->
-    <!-- <script src="assets/plugin/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-
-    <!-- <script src="assets/js/manage-jobs.init.js"></script> -->
-    <!-- Main js -->
-    <!-- <script src="assets/js/admin.init.js"></script> -->
-  </body>
-
-  <!-- Mirrored from hiresy.netlify.app/html/admin-manage-jobs by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:12:08 GMT -->
-</html>
+  </div>
+</div>

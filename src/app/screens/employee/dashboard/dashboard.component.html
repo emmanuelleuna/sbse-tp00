@@ -1,109 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-  <!-- Mirrored from hiresy.netlify.app/html/dashboard by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Feb 2025 23:11:58 GMT -->
-  <!-- Added by HTTrack --><meta
-    http-equiv="content-type"
-    content="text/html;charset=UTF-8"
-  /><!-- /Added by HTTrack -->
-  <head>
-    <meta charset="utf-8" />
-    <title>Dashboards</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta content="Objedctthemes" name="author" />
-    <meta content="Hiresy - Job Listing Page Template" name="description" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-
-    <link
-      rel="stylesheet"
-      href="../../../../assets/plugin/apexcharts/apexcharts.css"
-    />
-
-    <!--------------Bootstrap Icon----------------->
-    <!-- <link href="assets/css/bootstrap-icons.min.css" rel="stylesheet"> -->
-    <!--------------Bootstrap CSS----------------->
-    <!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!--------------Main CSS----------------->
-    <!-- <link href="assets/css/main.min.css" rel="stylesheet"> -->
-  </head>
-
-  <body class="bg-light">
-    <div>
+<body class="bg-light">
+  <div
+    class="offcanvas offcanvas-sidebar offcanvas-start bg-body-secondary"
+    tabindex="-1"
+    id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel"
+  >
+    <div
+      class="sidebar-left fixed-bottom bg-body-secondary shadow-md top-0 bottom-0 left-0"
+    >
       <div
-        class="offcanvas offcanvas-sidebar offcanvas-start bg-body-secondary"
-        tabindex="-1"
-        id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel"
+        class="d-flex align-items-center justify-content-center navbar-brand"
       >
-        <div
-          class="sidebar-left fixed-bottom bg-body-secondary shadow-md top-0 bottom-0 left-0"
-        >
-          <div
-            class="d-flex align-items-center justify-content-center navbar-brand"
-          >
-            <a href="#!">
-              <img
-                src="assets/images/logo-dark.png"
-                alt=""
-                height="26"
-                class="dark"
-              />
-              <img
-                src="assets/images/logo-light.png"
-                alt=""
-                height="26"
-                class="light"
-              />
-            </a>
-          </div>
-          <div class="sidebar-navbar-menu">
-            <ul class="list-unstyled">
-              <li *ngFor="let item of sidebar_routes">
-                <a href="{{ item.url }}" routerLinkActive="router-link-active"
-                  ><i class="{{ item.icon }}"></i> {{ item.title }}</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
+        <a href="#!">
+          <img
+            src="assets/images/logo-dark.png"
+            alt=""
+            height="26"
+            class="dark"
+          />
+          <img
+            src="assets/images/logo-light.png"
+            alt=""
+            height="26"
+            class="light"
+          />
+        </a>
       </div>
-
-      <div class="admin-topbar shadow-md bg-body-secondary px-3">
-        <!-- toggle drawer btn -->
-        <div class="flex-grow-1">
-          <button
-            (click)="toggleDrawer()"
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample"
-          >
-            <span class="bi bi-list text-muted fs-2"></span>
-          </button>
-        </div>
-        <div class="flex-shrink-0">
-          <a class="btn btn-success" href="admin/create-job">Post Job</a>
-        </div>
+      <div class="sidebar-navbar-menu">
+        <ul class="list-unstyled">
+          <li *ngFor="let item of sidebar_routes">
+            <a href="{{ item.url }}" routerLinkActive="router-link-active"
+              ><i class="{{ item.icon }}"></i> {{ item.title }}</a
+            >
+          </li>
+        </ul>
       </div>
-
-      <!-- router outlet -->
-      <router-outlet />
     </div>
+  </div>
 
-    <!-- JAVASCRIPT -->
-    <!-- <script src="assets/plugin/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <div class="admin-topbar shadow-md bg-body-secondary px-3">
+    <!-- toggle drawer btn -->
+    <div class="flex-grow-1">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasExample"
+        aria-controls="offcanvasExample"
+      >
+        <span class="bi bi-list text-muted fs-2"></span>
+      </button>
+    </div>
+    <div class="flex-shrink-0">
+      <a class="btn btn-success" href="admin/create-job">Post Job</a>
+    </div>
+  </div>
 
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
+  <!-- router outlet -->
+  <router-outlet />
 
-    <!-- <script src="../../../../assets/plugin/apexcharts/apexcharts.min.js"></script> -->
-
-    <!-- <script src="../../../../assets/js/dashboard.init.js"></script> -->
-    <!-- Main js -->
-    <!-- <script src="../../../../assets/js/admin.init.js"></script> -->
-  </body>
-</html>
+</body>

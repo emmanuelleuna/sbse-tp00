@@ -15,6 +15,7 @@ import { CreateJobComponent } from './screens/employee/create-job/create-job.com
 import { HomeComponent as AdminHomeComponent } from './screens/employee/home/home.component';
 import { LayoutComponent } from './screens/site/layout/layout.component';
 import { HomeComponent } from './screens/site/home/home.component';
+import { ManageCandidatesResultComponent } from './screens/employee/manage-candidates-result/manage-candidates-result.component';
 
 export const routes: Routes = [
     { path: "", pathMatch: "full", redirectTo: "site/home" },
@@ -40,6 +41,7 @@ export const routes: Routes = [
             { path: "profile", component: ProfileComponent },
             { path: "manage-jobs", component: ManageJobsComponent },
             { path: "manage-candidates", component: ManageCandidatesComponent },
+            { path: "manage-candidates/result", component: ManageCandidatesResultComponent },
             { path: "create-job", component: CreateJobComponent },
         ]
     },
