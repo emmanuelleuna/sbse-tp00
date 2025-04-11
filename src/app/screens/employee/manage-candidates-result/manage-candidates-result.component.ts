@@ -106,7 +106,6 @@ export class ManageCandidatesResultComponent {
       // log
       console.error(errors);
 
-
     })
 
   }

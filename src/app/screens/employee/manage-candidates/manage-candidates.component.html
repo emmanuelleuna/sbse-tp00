@@ -35,7 +35,7 @@
                 </button>
 
                 <button
-                (click)="startSelection()"
+                  (click)="startSelection()"
                   [disabled]="
                     candidateList.length == 0 || selectedCandidat.length > 0
                   "
@@ -72,7 +72,7 @@
                   </tr>
                 </thead>
                 <tbody x-ref="tbody">
-                  <tr>
+                  <tr *ngFor="let sc of candidateList; let i = index">
                     <td>1</td>
                     <td>
                       <div class="d-flex align-items-center gap-3">
@@ -81,243 +81,14 @@
                           alt=""
                           class="square-xxs rounded"
                         />
-                        <h6 class="mb-0 font-15">Laura Cussen</h6>
+                        <h6 class="mb-0 font-15">
+                          {{ sc.job_seeker_username }}
+                        </h6>
                       </div>
                     </td>
-                    <td>React Developer</td>
-                    <td>laura...objectthemes.com</td>
-                    <td>09192 98 53 57</td>
-                    <td>
-                      <div class="d-flex gap-3 flex-wrap">
-                        <a href="#!" class="link-primary"
-                          ><i class="bi bi-eye"></i
-                        ></a>
-                        <a
-                          href="#!"
-                          class="link-secondary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#createModal"
-                          ><i class="bi bi-pencil-square"></i
-                        ></a>
-                        <a href="#!" class="link-danger"
-                          ><i class="bi bi-trash3"></i
-                        ></a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <img
-                          src="assets/images/feedback_client/client-02.jpg"
-                          alt=""
-                          class="square-xxs rounded"
-                        />
-                        <h6 class="mb-0 font-15">Gabriel Reinhold</h6>
-                      </div>
-                    </td>
-                    <td>UI / UX Designer</td>
-                    <td>gabriel...objectthemes.com</td>
-                    <td>02421 86 81 07</td>
-                    <td>
-                      <div class="d-flex gap-3 flex-wrap">
-                        <a href="#!" class="link-primary"
-                          ><i class="bi bi-eye"></i
-                        ></a>
-                        <a
-                          href="#!"
-                          class="link-secondary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#createModal"
-                          ><i class="bi bi-pencil-square"></i
-                        ></a>
-                        <a href="#!" class="link-danger"
-                          ><i class="bi bi-trash3"></i
-                        ></a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <img
-                          src="assets/images/feedback_client/client-03.jpg"
-                          alt=""
-                          class="square-xxs rounded"
-                        />
-                        <h6 class="mb-0 font-15">Eliza Malley</h6>
-                      </div>
-                    </td>
-                    <td>ASP.Net Developer</td>
-                    <td>eliza...objectthemes.com</td>
-                    <td>09856 99 61 97</td>
-                    <td>
-                      <div class="d-flex gap-3 flex-wrap">
-                        <a href="#!" class="link-primary"
-                          ><i class="bi bi-eye"></i
-                        ></a>
-                        <a
-                          href="#!"
-                          class="link-secondary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#createModal"
-                          ><i class="bi bi-pencil-square"></i
-                        ></a>
-                        <a href="#!" class="link-danger"
-                          ><i class="bi bi-trash3"></i
-                        ></a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <img
-                          src="assets/images/feedback_client/client-04.jpg"
-                          alt=""
-                          class="square-xxs rounded"
-                        />
-                        <h6 class="mb-0 font-15">Summer Mouton</h6>
-                      </div>
-                    </td>
-                    <td>Team Leader</td>
-                    <td>mouton...objectthemes.com</td>
-                    <td>036701 71 29</td>
-                    <td>
-                      <div class="d-flex gap-3 flex-wrap">
-                        <a href="#!" class="link-primary"
-                          ><i class="bi bi-eye"></i
-                        ></a>
-                        <a
-                          href="#!"
-                          class="link-secondary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#createModal"
-                          ><i class="bi bi-pencil-square"></i
-                        ></a>
-                        <a href="#!" class="link-danger"
-                          ><i class="bi bi-trash3"></i
-                        ></a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <img
-                          src="assets/images/feedback_client/client-05.jpg"
-                          alt=""
-                          class="square-xxs rounded"
-                        />
-                        <h6 class="mb-0 font-15">Natalie Westall</h6>
-                      </div>
-                    </td>
-                    <td>Angular Developer</td>
-                    <td>natalie...objectthemes.com</td>
-                    <td>07275 15 17 27</td>
-                    <td>
-                      <div class="d-flex gap-3 flex-wrap">
-                        <a href="#!" class="link-primary"
-                          ><i class="bi bi-eye"></i
-                        ></a>
-                        <a
-                          href="#!"
-                          class="link-secondary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#createModal"
-                          ><i class="bi bi-pencil-square"></i
-                        ></a>
-                        <a href="#!" class="link-danger"
-                          ><i class="bi bi-trash3"></i
-                        ></a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <img
-                          src="assets/images/feedback_client/client-06.jpg"
-                          alt=""
-                          class="square-xxs rounded"
-                        />
-                        <h6 class="mb-0 font-15">Alexandra Goodwin</h6>
-                      </div>
-                    </td>
-                    <td>Backend Developer</td>
-                    <td>alexandra...objectthemes.com</td>
-                    <td>03991 64 64 97</td>
-                    <td>
-                      <div class="d-flex gap-3 flex-wrap">
-                        <a href="#!" class="link-primary"
-                          ><i class="bi bi-eye"></i
-                        ></a>
-                        <a
-                          href="#!"
-                          class="link-secondary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#createModal"
-                          ><i class="bi bi-pencil-square"></i
-                        ></a>
-                        <a href="#!" class="link-danger"
-                          ><i class="bi bi-trash3"></i
-                        ></a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>7</td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <img
-                          src="assets/images/feedback_client/client-07.jpg"
-                          alt=""
-                          class="square-xxs rounded"
-                        />
-                        <h6 class="mb-0 font-15">Rachel Anderson</h6>
-                      </div>
-                    </td>
-                    <td>Frontend Developer</td>
-                    <td>anderson...objectthemes.com</td>
-                    <td>089 15 91 80</td>
-                    <td>
-                      <div class="d-flex gap-3 flex-wrap">
-                        <a href="#!" class="link-primary"
-                          ><i class="bi bi-eye"></i
-                        ></a>
-                        <a
-                          href="#!"
-                          class="link-secondary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#createModal"
-                          ><i class="bi bi-pencil-square"></i
-                        ></a>
-                        <a href="#!" class="link-danger"
-                          ><i class="bi bi-trash3"></i
-                        ></a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>8</td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <img
-                          src="assets/images/feedback_client/client-08.jpg"
-                          alt=""
-                          class="square-xxs rounded"
-                        />
-                        <h6 class="mb-0 font-15">Tegan Hancock</h6>
-                      </div>
-                    </td>
-                    <td>Full Stack Developer</td>
-                    <td>hancock...objectthemes.com</td>
-                    <td>09123 97 14 47</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
                     <td>
                       <div class="d-flex gap-3 flex-wrap">
                         <a href="#!" class="link-primary"
@@ -339,7 +110,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="row align-items-center">
+            <!-- <div class="row align-items-center">
               <div class="col-lg-6">
                 <p
                   class="mb-0 text-muted text-center text-lg-start font-14 mb-3 mb-lg-0"
@@ -381,7 +152,7 @@
                   </ul>
                 </nav>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

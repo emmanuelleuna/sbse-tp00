@@ -74,10 +74,25 @@
           <i class="bi bi-person-circle fs-5"></i>
         </button>
 
-        <!-- disconnected dropdown -->
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+        <!-- disconnected user dropdown -->
+        <ul
+          *ngIf="!_appService.isUserConnected"
+          class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start"
+        >
           <li><a class="dropdown-item" routerLink="/login">Sign in</a></li>
           <li><a class="dropdown-item" routerLink="/register">Sign up</a></li>
+        </ul>
+
+        <!-- connected user dropdown -->
+        <ul
+          *ngIf="_appService.isUserConnected"
+          class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start"
+        >
+          <li><a class="dropdown-item" routerLink="#">profile</a></li>
+          <!-- <li *ngIf="_appService.getUserData().type == 'employer'"><a class="dropdown-item" routerLink="/admin/dashboard">Dashboard</a></li> -->
+          <li>
+            <button class="dropdown-item" (click)="logout()">Log out</button>
+          </li>
         </ul>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,19 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'https://092e-129-0-189-48.ngrok-free.app/'; // À adapter selon ton backend
+  private apiUrl = 'http://192.168.1.101:5000'; // À adapter selon ton backend
 
 
   /**
    * Données de l'utilisateur
    */
   user: any = null;
+
+
+  logout() {
+    this.user = null;
+    localStorage.clear()
+  }
 
   // Ajoute le token dans l'en-tête si nécessaire
   private getAuthHeaders(): HttpHeaders {
@@ -41,9 +48,12 @@ export class AppService {
   getUserData() {
     const token = localStorage.getItem('access_token');
     if (token) {
+      let user_data: any;
       // const payload = token.split('.')[1];
       // const decodedPayload = atob(payload);
       // return JSON.parse(decodedPayload);
+
+      return user_data;
     }
     return null;
   }
@@ -89,6 +99,12 @@ export class AppService {
     return this.http.post(`${this.apiUrl}/login`, data);
   }
 
+  getUserDataFromServer(user_id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/user/${user_id}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
   // 4. Création d'une offre d'emploi (employeur)
   /**
    * Création d'une offre d'emploi
@@ -100,6 +116,18 @@ export class AppService {
       headers: this.getAuthHeaders()
     });
   }
+
+  /**
+   * 
+   * @param job_id Get job offer
+   * @returns 
+   */
+  getJobOffer(job_id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/job_offers/${job_id}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
 
   // 5. Postuler à une offre d'emploi (chercheur)
   /**
@@ -119,7 +147,7 @@ export class AppService {
    * @param job_offer_id 
    * @returns 
    */
-  analyzeCandidatures(job_offer_id: number): Observable<any> {
+  analyzeCandidatures(job_offer_id: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/analyze/${job_offer_id}`, {}, {
       headers: this.getAuthHeaders()
     });
@@ -130,7 +158,9 @@ export class AppService {
    * @returns 
    */
   getJobList(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/get_all_job_offers`);
+    return this.http.get(`${this.apiUrl}/job_offers`, {
+      headers: this.getAuthHeaders()
+    });
   }
 
   /**
@@ -138,7 +168,9 @@ export class AppService {
    * @returns 
    */
   getJobCandidatList(job_id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/get_job_candidat_list`);
+    return this.http.get(`${this.apiUrl}/job_offers/${job_id}/applications`,{
+      headers: this.getAuthHeaders()
+    });
   }
 
   /**

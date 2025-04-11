@@ -25,8 +25,21 @@ export class CreateJobComponent {
     private _datetimeService: DatetimeService
   ) { }
 
+  competenceMap: { [key: string]: number } = {
+    "Ability to work in different business units": 0.15,
+    "Past experience": 0.2,
+    "Team player": 0.1,
+    "Fluency in a foreign language": 0.1,
+    "Strategic thinking": 0.15,
+    "Oral communication skills": 0.15,
+    "Computer skills": 0.15
+  };
+
+  keys = Object.keys(this.competenceMap);
+
 
   // variables =========================
+  criteriaObject: { [key: string]: number } = {};
   isLoading = false;
   job_compagny: string = "";
   job_title: string = "";
@@ -48,13 +61,25 @@ export class CreateJobComponent {
    */
   initCriteriaList() {
     // code ...
-    for (let i = 1; i < 7; i++) {
+    // for (let i = 1; i < 7; i++) {
+    //   this.criteriaList.push({
+    //     title: "Criteria " + i,
+    //     value: "Value " + i,
+    //     weight: 0,
+    //     editable: false
+    //   })
+    // }
+    const keys = Object.keys(this.competenceMap);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
       this.criteriaList.push({
-        title: "Criteria " + i,
-        value: "Value " + i,
-        weight: 0,
+        title: key,
+        value: key,
+        weight: this.competenceMap[key],
         editable: false
-      })
+      });
+
+      this.criteriaObject[key] = this.competenceMap[key];
     }
 
   }
@@ -85,39 +110,47 @@ export class CreateJobComponent {
    */
   createJobOffer() {
 
+    let criteria: Object = {
+
+    }
+
+
+
+
     let data = {
-      "job_compagny": this.job_compagny,
-      "job_title": this.job_title,
-      "job_description": this.job_description,
-      "job_available_place": this.job_available_place,
-      "job_work_time": this.job_work_time,
-      "job_work_place": this.job_work_place,
-      "job_email_address": this.job_email_address,
-      "job_phone_address": this.job_phone_address,
-      "job_author": this.job_author,
-      "job_salary_min": this.job_salary_min,
-      "job_salary_max": this.job_salary_max,
-      "job_deadline": this.job_deadline,
-      "criteria": this.criteriaList,
-      "job_location": this.job_location
+      // "job_compagny": this.job_compagny,
+      "title": this.job_title,
+      "description": this.job_description,
+      // "job_available_place": this.job_available_place,
+      // "job_work_time": this.job_work_time,
+      // "job_work_place": this.job_work_place,
+      // "job_email_address": this.job_email_address,
+      // "job_phone_address": this.job_phone_address,
+      // "job_author": this.job_author,
+      // "job_salary_min": this.job_salary_min,
+      // "job_salary_max": this.job_salary_max,
+      // "job_deadline": this.job_deadline,
+      "criteria": this.criteriaObject,
+      // "job_location": this.job_location
     }
 
     console.log(data);
 
     // check empty field
     if (
-      !this.job_compagny.trim() ||
+      // !this.job_compagny.trim() ||
       !this.job_title.trim() ||
-      !this.job_description.trim() ||
-      this.job_available_place < 0 ||
-      !this.job_work_time.trim() ||
-      !this.job_work_place.trim() ||
-      !this.job_email_address.trim() ||
-      !this.job_phone_address.trim() ||
-      !this.job_author.trim() ||
-      this.job_salary_min < 0 ||
-      this.job_salary_max < 0 ||
-      !this.job_deadline
+      !this.job_description.trim()
+      // this.job_available_place < 0 ||
+      // !this.job_work_time.trim() ||
+      // !this.job_work_place.trim() ||
+      // !this.job_email_address.trim() ||
+      // !this.job_phone_address.trim() ||
+      // !this.job_author.trim() ||
+      // this.job_salary_min < 0 ||
+      // this.job_salary_max < 0 ||
+      // !this.job_deadline ||
+      // !this.job_location.trim()
     ) {
       // invalied field
       this._notifierService.notify('error', "Invalid form. Please fill all fields");
@@ -125,33 +158,33 @@ export class CreateJobComponent {
     }
 
     // ckeck empty criteria
-    this.criteriaList.map((c, index) => {
-      if (!c.title.trim() || !c.value.trim() || c.weight < 0) {
-        // invalid criteria
-        this._notifierService.notify('error', "Invalid criteria:" + index + 1);
-        return;
-      }
-    })
+    // this.criteriaList.map((c, index) => {
+    //   if (!c.title.trim() || !c.value.trim() || c.weight < 0) {
+    //     // invalid criteria
+    //     this._notifierService.notify('error', "Invalid criteria:" + index + 1);
+    //     return;
+    //   }
+    // })
 
     // available place must be greather than 0
-    if (this.job_available_place < 1) {
-      this._notifierService.notify('error', "Available place must be greather than 0");
-      return;
-    }
+    // if (this.job_available_place < 1) {
+    //   this._notifierService.notify('error', "Available place must be greather than 0");
+    //   return;
+    // }
 
     // Max salary amount must be greather than minimum
-    if (this.job_salary_min > this.job_salary_max) {
-      this._notifierService.notify('error', "Max salary amount must be greather than minimum");
-      return;
-    }
+    // if (this.job_salary_min > this.job_salary_max) {
+    //   this._notifierService.notify('error', "Max salary amount must be greather than minimum");
+    //   return;
+    // }
 
     // Application deadline must be greather than now (at least 24h d<ecart)
-    let date1 = new Date(this.job_deadline);
-    let date2 = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000)
-    if (date1 < date2) {
-      this._notifierService.notify('error', "Available time for submissions must be at least 24H");
-      return;
-    }
+    // let date1 = new Date(this.job_deadline);
+    // let date2 = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000)
+    // if (date1 < date2) {
+    //   this._notifierService.notify('error', "Available time for submissions must be at least 24H");
+    //   return;
+    // }
 
     // start loading
     this.isLoading = true
@@ -161,10 +194,11 @@ export class CreateJobComponent {
       (response) => {
         // stop loading
         this.isLoading = false;
-        if (response.status === 'success') {
-          this._notifierService.notify('success', 'Jthe job has been successfully created');
+        if (response.message) {
+          this._notifierService.notify('success', 'The job has been successfully created');
 
           // reset form
+          this.resetForm()
 
         } else {
           this._notifierService.notify('error', response.message);
@@ -176,7 +210,6 @@ export class CreateJobComponent {
         this._notifierService.notify('error', 'An error has occurred');
 
         console.log(error);
-
       }
     );
 

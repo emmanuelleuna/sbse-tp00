@@ -28,6 +28,7 @@ export class ManageCandidatesComponent {
 
   // variables ============================================
   isJobListLoading = false
+  isSelectedCandidateDisplayed = false;
   isSelectionLoading = false;
   isJobCandidatListLoading = false
   jobList: any[] = []
@@ -43,17 +44,17 @@ export class ManageCandidatesComponent {
    */
   getJobList() {
     // code ...
-    for (let i = 0; i < 5; i++) {
-      this.jobList.push({
-        id: i,
-        title: 'Job title-' + i
-      })
-    }
+    // for (let i = 0; i < 5; i++) {
+    //   this.jobList.push({
+    //     id: i,
+    //     title: 'Job title-' + i
+    //   })
+    // }
 
     // get job list from server
     this._appService.getJobList().subscribe(
       (response) => {
-        this.jobList = response.data
+        this.jobList = response
       },
       (error) => {
         console.log(error)
@@ -66,15 +67,15 @@ export class ManageCandidatesComponent {
    */
   getJobCandidatList() {
     // code ...
-    for (let i = 0; i < 20; i++) {
-      this.candidateList.push({
-        id: 'candidate-id-' + i,
-        name: 'Candidate name-' + i,
-        gender: 'Male',
-        email: 'Candidate name-' + i,
-        phone: 'Candidate phone-' + i
-      })
-    }
+    // for (let i = 0; i < 20; i++) {
+    //   this.candidateList.push({
+    //     id: 'candidate-id-' + i,
+    //     name: 'Candidate name-' + i,
+    //     gender: 'Male',
+    //     email: 'Candidate name-' + i,
+    //     phone: 'Candidate phone-' + i
+    //   })
+    // }
     // call server to get job candidat list
 
     // start loading
@@ -87,8 +88,10 @@ export class ManageCandidatesComponent {
           this.isJobCandidatListLoading = false
 
           // get data
-          this.candidateList = response.data
+          this.candidateList = response
 
+          // log
+          console.log(response);
         },
         (error) => {
           // stop loading
@@ -111,23 +114,34 @@ export class ManageCandidatesComponent {
     // code ...
     this.isSelectionLoading = true
 
+    this._appService.analyzeCandidatures(this.selectedJob).subscribe((res) => {
+
+      // poplate selected candida
+      this.selectedCandidat = res
+
+    }, (error) => {
+      console.error(error);
+      this._notifierService.notify('error', 'An error occured')
+
+    })
+
     // populate selectedcandidate list
-    this.selectedCandidat.push([
-      {
-        url: "http:...",
-        name: "Jhon Cater",
-        gender: "Male",
-        email: "jhoncarter@gmail.com",
-        phone: "650 503 478"
-      },
-      {
-        url: "http:...",
-        name: "Jhon Cater",
-        gender: "Male",
-        email: "jhoncarter@gmail.com",
-        phone: "650 503 478"
-      },
-    ])
+    // this.selectedCandidat.push([
+    //   {
+    //     url: "http:...",
+    //     name: "Jhon Cater",
+    //     gender: "Male",
+    //     email: "jhoncarter@gmail.com",
+    //     phone: "650 503 478"
+    //   },
+    //   {
+    //     url: "http:...",
+    //     name: "Jhon Cater",
+    //     gender: "Male",
+    //     email: "jhoncarter@gmail.com",
+    //     phone: "650 503 478"
+    //   },
+    // ])
 
   }
 

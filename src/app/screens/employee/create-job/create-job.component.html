@@ -104,9 +104,10 @@
                           <input
                             [disabled]="!criteria.editable"
                             type="text"
-                            class="form-control"
+                            class="form-control text-truncate"
                             placeholder="Criteria"
                             [(ngModel)]="criteria.title"
+                            title="{{ criteria.title }}"
                           />
                         </td>
                         <td>

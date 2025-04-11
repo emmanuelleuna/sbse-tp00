@@ -2,12 +2,16 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-12">
-        <div class="d-flex flex-column flex-md-row gap-3">
-          <img
-            src="assets/images/company_logo/telegram.png"
-            alt=""
-            class="square-md flex-shrink-0"
-          />
+        <!-- loader -->
+        <div
+          class="d-flex flex-row justify-content-center align-items-center p-5"
+        >
+          <span *ngIf="isJobLoading" class="spinner-border text-primary"></span>
+        </div>
+
+        <!-- job header -->
+        <div *ngIf="!isJobLoading" class="d-flex flex-column flex-md-row gap-3">
+          <i class="bi bi-box fs-1 text-secondary"></i>
           <div class="flex-grow-1">
             <a href="#!"
               ><p
@@ -58,7 +62,7 @@
   <!-- /container-->
 </div>
 
-<section class="wrapper-box">
+<section *ngIf="!isJobLoading" class="wrapper-box">
   <div class="container">
     <div class="row">
       <div class="col-xxl-9">
@@ -69,7 +73,9 @@
 
         <h6 class="font-18 mb-3">Requirements and skills</h6>
         <ul class="vstack gap-2 text-muted mb-4">
-          <li *ngFor="let c of criteriaList">{{ c.title }}: {{ c.value }}</li>
+          <li *ngFor="let c of criteriaList | keyvalue">
+            {{ c.key }}
+          </li>
         </ul>
 
         <h6 class="font-18 mb-3">Share Profile</h6>
@@ -305,7 +311,7 @@
           Your application has been sent successfully. You will receive a
           notification if you are selected.
         </div>
-        <form action="#!">
+        <div action="#!">
           <div class="row g-3">
             <div class="col-lg-12">
               <div>
@@ -342,6 +348,7 @@
                 >
                 <input
                   disabled
+                  [(ngModel)]="job_title"
                   type="text"
                   class="form-control"
                   id="roleInput"
@@ -380,7 +387,7 @@
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
       <div class="modal-footer">
         <button
