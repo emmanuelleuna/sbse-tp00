@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private _localstorageService: LocalStorageService) { }
 
   private apiUrl = 'http://192.168.1.101:5000'; // À adapter selon ton backend
 
@@ -21,12 +24,15 @@ export class AppService {
 
   logout() {
     this.user = null;
-    localStorage.clear()
+    this._localstorageService.clear()
+    console.log('access_token: ', this._localstorageService.getItem('access_token'));
+
+    // localStorage.clear()
   }
 
   // Ajoute le token dans l'en-tête si nécessaire
   private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('access_token');
+    const token = this._localstorageService.getItem('access_token');
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
@@ -37,8 +43,8 @@ export class AppService {
    * @returns 
    */
   isUserConnected(): boolean {
-    const token = localStorage.getItem('access_token');
-    return token !== null && token !== undefined;
+    const token = this._localstorageService.getItem('access_token');
+    return token != null || token != undefined;
   }
 
   /**
@@ -46,7 +52,7 @@ export class AppService {
    * @returns 
    */
   getUserData() {
-    const token = localStorage.getItem('access_token');
+    const token = this._localstorageService.getItem('access_token');
     if (token) {
       let user_data: any;
       // const payload = token.split('.')[1];
@@ -64,7 +70,7 @@ export class AppService {
    */
   setUserData(user: any) {
     this.user = user;
-    localStorage.setItem('user', JSON.stringify(user));
+    this._localstorageService.setItem('user', JSON.stringify(user));
   }
 
   // ------------------ API Routes ------------------
@@ -168,7 +174,7 @@ export class AppService {
    * @returns 
    */
   getJobCandidatList(job_id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/job_offers/${job_id}/applications`,{
+    return this.http.get(`${this.apiUrl}/job_offers/${job_id}/applications`, {
       headers: this.getAuthHeaders()
     });
   }

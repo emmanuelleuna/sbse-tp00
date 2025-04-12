@@ -76,7 +76,7 @@
 
         <!-- disconnected user dropdown -->
         <ul
-          *ngIf="!_appService.isUserConnected"
+          *ngIf="!_appService.isUserConnected()"
           class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start"
         >
           <li><a class="dropdown-item" routerLink="/login">Sign in</a></li>
@@ -85,7 +85,7 @@
 
         <!-- connected user dropdown -->
         <ul
-          *ngIf="_appService.isUserConnected"
+          *ngIf="_appService.isUserConnected()"
           class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start"
         >
           <li><a class="dropdown-item" routerLink="#">profile</a></li>

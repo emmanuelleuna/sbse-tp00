@@ -29,7 +29,7 @@ export class LayoutComponent {
     this._appService.logout();
     this._router.navigateByUrl('/')
 
-    console.log('logged');
+    console.log('logged out');
 
   }
 

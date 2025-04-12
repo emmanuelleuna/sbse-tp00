@@ -1,10 +1,17 @@
 <div class="position-relative">
   <div class="admin-page-wrapper">
-    <h5 class="mb-4">Manage Candidates!</h5>
+    <h5 class="mb-4">
+      {{
+        isSelectedCandidateDisplayed == true
+          ? "Selected candidates for [Job Title]"
+          : "Manage Candidates!"
+      }}
+    </h5>
 
     <div class="row">
       <div class="col-lg-12">
-        <div class="card">
+        <!-- candidate list --------------------------- -->
+        <div *ngIf="isSelectedCandidateDisplayed == false" class="card">
           <div class="card-header border-0 pb-2 d-flex align-items-center">
             <div class="w-100 align-items-center gap-lg-0">
               <!-- job selector area -->
@@ -37,7 +44,7 @@
                 <button
                   (click)="startSelection()"
                   [disabled]="
-                    candidateList.length == 0 || selectedCandidat.length > 0
+                    candidateList.length == 0 || candidateList.length > 0
                   "
                   class="btn btn-sm btn-secondary me-2"
                   type="button"
@@ -46,7 +53,7 @@
                 </button>
 
                 <button
-                  *ngIf="selectedCandidat.length > 0"
+                  *ngIf="selectedCandidates.length > 0"
                   class="btn btn-sm btn-secondary"
                   type="button"
                   (click)="gotoresultPage()"
@@ -89,6 +96,127 @@
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>
+                    <td>
+                      <div class="d-flex gap-3 flex-wrap">
+                        <a href="#!" class="link-primary"
+                          ><i class="bi bi-eye"></i
+                        ></a>
+                        <a
+                          href="#!"
+                          class="link-secondary"
+                          data-bs-toggle="modal"
+                          data-bs-target="#createModal"
+                          ><i class="bi bi-pencil-square"></i
+                        ></a>
+                        <a href="#!" class="link-danger"
+                          ><i class="bi bi-trash3"></i
+                        ></a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- <div class="row align-items-center">
+              <div class="col-lg-6">
+                <p
+                  class="mb-0 text-muted text-center text-lg-start font-14 mb-3 mb-lg-0"
+                >
+                  Showing <b>32</b> of <b>149</b> Jobs
+                </p>
+              </div>
+              <div class="col-lg-6">
+                <nav aria-label="Page navigation example">
+                  <ul
+                    class="pagination justify-content-center justify-content-lg-end mb-0 pagination-sm"
+                  >
+                    <li class="page-item">
+                      <a
+                        class="page-link square-xs"
+                        href="#"
+                        aria-label="Previous"
+                      >
+                        <i class="bi bi-chevron-left"></i>
+                      </a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link square-xs" href="#">1</a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link square-xs" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link square-xs" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link square-xs" href="#">4</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link square-xs" href="#" aria-label="Next">
+                        <i class="bi bi-chevron-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div> -->
+          </div>
+        </div>
+
+        <!-- display selected candidate list -->
+        <div *ngIf="isSelectedCandidateDisplayed == true" class="card">
+          <div class="card-header border-0 pb-2 d-flex align-items-center">
+            <div
+              class="w-100 d-flex flex-row justify-content-between align-items-center"
+            >
+              <button (click)="backToCandidateList()" class="btn btn-primary">
+                <i class="bi bi-arrow-left"></i>
+                Back to list
+              </button>
+
+              <button
+                [disabled]="isMessageSending"
+                (click)="sendMessageToCandidate()"
+                class="btn btn-secondary gap-2 d-flex"
+              >
+                <i *ngIf="!isMessageSending" class="bi bi-envelope"></i>
+                <span
+                  *ngIf="isMessageSending"
+                  class="spinner-border spinner-border-sm"
+                ></span>
+                Notify candidates
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table align-middle font-15" x-data="data()">
+                <thead>
+                  <tr>
+                    <th click="sortByColumn">#</th>
+                    <th click="sortByColumn">Name</th>
+                    <th click="sortByColumn">Gender</th>
+                    <th click="sortByColumn">Email</th>
+                    <th click="sortByColumn">Contact Number</th>
+                    <th click="sortByColumn">Action</th>
+                  </tr>
+                </thead>
+                <tbody x-ref="tbody">
+                  <tr *ngFor="let sc of selectedCandidates; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>
+                      <div class="d-flex align-items-center gap-3">
+                        <img
+                          src="assets/images/feedback_client/client-01.jpg"
+                          alt=""
+                          class="square-xxs rounded"
+                        />
+                        <h6 class="mb-0 font-15">{{ sc.name }}</h6>
+                      </div>
+                    </td>
+                    <td>{{ sc.gender }}</td>
+                    <td>{{ sc.email }}</td>
+                    <td>{{ sc.phone }}</td>
                     <td>
                       <div class="d-flex gap-3 flex-wrap">
                         <a href="#!" class="link-primary"

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NotifierModule, NotifierService } from 'angular-notifier';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { forkJoin, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manage-candidates',
@@ -27,17 +28,22 @@ export class ManageCandidatesComponent {
   }
 
   // variables ============================================
+  isMessageSending = false;
   isJobListLoading = false
   isSelectedCandidateDisplayed = false;
   isSelectionLoading = false;
   isJobCandidatListLoading = false
   jobList: any[] = []
   candidateList: any[] = []
-  selectedCandidat: any[] = []
+  selectedCandidates: any[] = []
   selectedJob = null
 
 
   // function =============================================
+
+  backToCandidateList() {
+    this.isSelectedCandidateDisplayed = false
+  }
 
   /**
    * Get job list from server
@@ -117,7 +123,7 @@ export class ManageCandidatesComponent {
     this._appService.analyzeCandidatures(this.selectedJob).subscribe((res) => {
 
       // poplate selected candida
-      this.selectedCandidat = res
+      this.selectedCandidates = res
 
     }, (error) => {
       console.error(error);
@@ -126,22 +132,22 @@ export class ManageCandidatesComponent {
     })
 
     // populate selectedcandidate list
-    // this.selectedCandidat.push([
-    //   {
-    //     url: "http:...",
-    //     name: "Jhon Cater",
-    //     gender: "Male",
-    //     email: "jhoncarter@gmail.com",
-    //     phone: "650 503 478"
-    //   },
-    //   {
-    //     url: "http:...",
-    //     name: "Jhon Cater",
-    //     gender: "Male",
-    //     email: "jhoncarter@gmail.com",
-    //     phone: "650 503 478"
-    //   },
-    // ])
+    this.selectedCandidates.push([
+      {
+        url: "http:...",
+        name: "Jhon Cater",
+        gender: "Male",
+        email: "jhoncarter@gmail.com",
+        phone: "650 503 478"
+      },
+      {
+        url: "http:...",
+        name: "Jhon Cater",
+        gender: "Male",
+        email: "jhoncarter@gmail.com",
+        phone: "650 503 478"
+      },
+    ])
 
   }
 
@@ -149,8 +155,52 @@ export class ManageCandidatesComponent {
    * Navigate to show result page
    */
   gotoresultPage() {
-    this._router.navigateByUrl('/admin/manage-candidates/result?job_id=' + this.selectedJob)
+    // this._router.navigateByUrl('/admin/manage-candidates/result?job_id=' + this.selectedJob)
+    // dsplay selected candidate list
+    this.isSelectedCandidateDisplayed = true
   }
+
+  /**
+    * Send message to selected candidates for current job
+    */
+  sendMessageToCandidate() {
+
+    // call array
+    let calls: Observable<any>[] = []
+    this.selectedCandidates.map((c, index) => {
+      let message = "Dear" + c.name + ", We are pleased to inform you that you have been selected for the[Job Title] position at[Company Name]. Your qualifications and experience stood out among the many applications we received, and we are excited about the potential you bring to our team.We will be reaching out to you shortly with further details regarding the next steps in the onboarding process.Once again, congratulations, and welcome aboard! Best regards."
+      let data = {
+        id_sender: 0,
+        id_receiver: 1,
+        message: message,
+        created_at: new Date()
+      }
+      calls.push(this._appService.sendMessage(data))
+    })
+
+    // start loader
+    this.isMessageSending = true;
+    forkJoin(calls).subscribe((responses) => {
+      // stop loader
+      this.isMessageSending = false;
+      // code ...
+      // if success 
+      this._notifierService.notify('success', 'Messages have been sent successfully')
+
+    }, (errors) => {
+      // stop loader
+      this.isMessageSending = false;
+
+      // notify
+      this._notifierService.notify('error', 'An error occured')
+
+      // log
+      console.error(errors);
+
+    })
+
+  }
+
 
   ngOnInit() {
     this.getJobList()
