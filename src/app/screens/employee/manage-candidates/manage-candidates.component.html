@@ -3,7 +3,7 @@
     <h5 class="mb-4">
       {{
         isSelectedCandidateDisplayed == true
-          ? "Selected candidates for [Job Title]"
+          ? "Selected candidates"
           : "Manage Candidates!"
       }}
     </h5>
@@ -34,21 +34,31 @@
                 <!-- <div class="flex flex-column justify-content-end align-items-end"> -->
                 <button
                   (click)="getJobCandidatList()"
-                  [disabled]="selectedJob == null"
+                  [disabled]="selectedJob == null || isJobCandidatListLoading"
                   class="btn btn-sm btn-secondary me-2"
                   type="button"
                 >
+                  <span
+                    *ngIf="isJobCandidatListLoading"
+                    class="spinner-border spinner-border-sm me-2"
+                  ></span>
                   Get submissions
                 </button>
 
                 <button
                   (click)="startSelection()"
                   [disabled]="
-                    candidateList.length == 0 || candidateList.length > 0
+                    candidateList.length == 0 ||
+                    selectedCandidates.length > 0 ||
+                    isSelectionLoading == true
                   "
-                  class="btn btn-sm btn-secondary me-2"
+                  class="btn btn-sm btn-secondary me-1"
                   type="button"
                 >
+                  <span
+                    *ngIf="isSelectionLoading"
+                    class="spinner-border spinner-border-sm me-1"
+                  ></span>
                   Start selection
                 </button>
 
@@ -83,11 +93,7 @@
                     <td>1</td>
                     <td>
                       <div class="d-flex align-items-center gap-3">
-                        <img
-                          src="assets/images/feedback_client/client-01.jpg"
-                          alt=""
-                          class="square-xxs rounded"
-                        />
+                        <i class="bi bi-person fs-4 text-secondary"></i>
                         <h6 class="mb-0 font-15">
                           {{ sc.job_seeker_username }}
                         </h6>
@@ -165,7 +171,9 @@
 
         <!-- display selected candidate list -->
         <div *ngIf="isSelectedCandidateDisplayed == true" class="card">
-          <div class="card-header border-0 pb-2 d-flex align-items-center">
+          <div
+            class="card-header border-0 pb-2 gap-5 d-flex flex-column align-items-center"
+          >
             <div
               class="w-100 d-flex flex-row justify-content-between align-items-center"
             >
@@ -187,100 +195,89 @@
                 Notify candidates
               </button>
             </div>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table align-middle font-15" x-data="data()">
-                <thead>
-                  <tr>
-                    <th click="sortByColumn">#</th>
-                    <th click="sortByColumn">Name</th>
-                    <th click="sortByColumn">Gender</th>
-                    <th click="sortByColumn">Email</th>
-                    <th click="sortByColumn">Contact Number</th>
-                    <th click="sortByColumn">Action</th>
-                  </tr>
-                </thead>
-                <tbody x-ref="tbody">
-                  <tr *ngFor="let sc of selectedCandidates; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td>
-                      <div class="d-flex align-items-center gap-3">
-                        <img
-                          src="assets/images/feedback_client/client-01.jpg"
-                          alt=""
-                          class="square-xxs rounded"
-                        />
-                        <h6 class="mb-0 font-15">{{ sc.name }}</h6>
-                      </div>
-                    </td>
-                    <td>{{ sc.gender }}</td>
-                    <td>{{ sc.email }}</td>
-                    <td>{{ sc.phone }}</td>
-                    <td>
-                      <div class="d-flex gap-3 flex-wrap">
-                        <a href="#!" class="link-primary"
-                          ><i class="bi bi-eye"></i
-                        ></a>
-                        <a
-                          href="#!"
-                          class="link-secondary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#createModal"
-                          ><i class="bi bi-pencil-square"></i
-                        ></a>
-                        <a href="#!" class="link-danger"
-                          ><i class="bi bi-trash3"></i
-                        ></a>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+
+            <!-- legend -->
+            <div class="d-flex flex-column gap-3">
+              <span class="text-muted">Legend</span>
+              <div class="d-flex flex-row gap-3">
+                <!-- selected finalist -->
+                <div class="d-flex flex-column flex-md-row gap-3 p-3 rounded-3 bg-success-subtle border">
+                  <!-- <i class="bi bi-square-fill text-success fs-2"></i> -->
+                  <div class="d-flex flex-column">
+                    <h4 class="fw-bold">Selected finalist</h4>
+                    <span class="">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Dolorum soluta doloremque rerum dolorem corporis, facere
+                      blanditiis consectetur similique animi expedita voluptates
+                      quo debitis dicta veritatis vel. Eligendi sapiente tempore
+                      expedita?
+                    </span>
+                  </div>
+                </div>
+
+                <!-- candidate finalist -->
+                <div class="d-flex flex-column flex-md-row gap-3 p-3 rounded-3 border">
+                  <!-- <i class="bi bi-square text-black fs-2"></i> -->
+                  <div class="d-flex flex-column">
+                    <h4 class="fw-bold">Candidate finalist</h4>
+                    <span class="">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Dolorum soluta doloremque rerum dolorem corporis, facere
+                      blanditiis consectetur similique animi expedita voluptates
+                      quo debitis dicta veritatis vel. Eligendi sapiente tempore
+                      expedita?
+                    </span>
+                  </div>
+                </div>
+
+                <!-- recommandation finalist -->
+                <div class="d-flex flex-column flex-md-row gap-3 p-3   bg-primary-subtle rounded-3 border">
+                  <!-- <i class="bi bi-square-fill text-black fs-2"></i> -->
+                  <div class="d-flex flex-column">
+                    <h4 class="fw-bold">Recommandation</h4>
+                    <span class="">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Dolorum soluta doloremque rerum dolorem corporis, facere
+                      blanditiis consectetur similique animi expedita voluptates
+                      quo debitis dicta veritatis vel. Eligendi sapiente tempore
+                      expedita?
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <!-- <div class="row align-items-center">
+          </div>
+
+          <!-- card area -->
+          <div class="card-body">
+            <div class="row">
+              <!-- display selected finalist (real) given the number of available place -->
               <div class="col-lg-6">
-                <p
-                  class="mb-0 text-muted text-center text-lg-start font-14 mb-3 mb-lg-0"
-                >
-                  Showing <b>32</b> of <b>149</b> Jobs
-                </p>
+                <app-selected-candidate-card [isSelected]="true" />
+              </div>
+
+              <!-- display rest of finalist (real) -->
+              <div class="col-lg-6">
+                <app-selected-candidate-card />
               </div>
               <div class="col-lg-6">
-                <nav aria-label="Page navigation example">
-                  <ul
-                    class="pagination justify-content-center justify-content-lg-end mb-0 pagination-sm"
-                  >
-                    <li class="page-item">
-                      <a
-                        class="page-link square-xs"
-                        href="#"
-                        aria-label="Previous"
-                      >
-                        <i class="bi bi-chevron-left"></i>
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link square-xs" href="#">1</a>
-                    </li>
-                    <li class="page-item active">
-                      <a class="page-link square-xs" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link square-xs" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link square-xs" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link square-xs" href="#" aria-label="Next">
-                        <i class="bi bi-chevron-right"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+                <app-selected-candidate-card />
               </div>
-            </div> -->
+
+              <!-- recommandation (abstract) -->
+              <div class="col-lg-6">
+                <app-selected-candidate-card [isAbstract]="true" />
+              </div>
+              <div class="col-lg-6">
+                <app-selected-candidate-card [isAbstract]="true" />
+              </div>
+              <div class="col-lg-6">
+                <app-selected-candidate-card [isAbstract]="true" />
+              </div>
+              <div class="col-lg-6">
+                <app-selected-candidate-card [isAbstract]="true" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -84,15 +84,16 @@
         </ul>
 
         <!-- connected user dropdown -->
-        <ul
-          *ngIf="_appService.isUserConnected()"
-          class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start"
-        >
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
           <li><a class="dropdown-item" routerLink="#">profile</a></li>
-          <!-- <li *ngIf="_appService.getUserData().type == 'employer'"><a class="dropdown-item" routerLink="/admin/dashboard">Dashboard</a></li> -->
+          <li>
+            <a class="dropdown-item" routerLink="/admin/dashboard">Dashboard</a>
+          </li>
           <li>
             <button class="dropdown-item" (click)="logout()">Log out</button>
           </li>
+          <li><a class="dropdown-item" routerLink="/login">Sign in</a></li>
+          <li><a class="dropdown-item" routerLink="/register">Sign up</a></li>
         </ul>
       </div>
     </div>

@@ -45,8 +45,8 @@ export class RegisterComponent {
   register() {
     // check empty field
     if (
-      !this.firstName ||
-      !this.lastName ||
+      // !this.firstName ||
+      // !this.lastName ||
       !this.password ||
       !this.confirmPassword ||
       !this.username
@@ -69,18 +69,20 @@ export class RegisterComponent {
       this._appService.registerJobSeeker({
         username: this.username,
         password: this.password,
-        firstName: this.firstName,
-        lastName: this.lastName
+        // firstName: this.firstName,
+        // lastName: this.lastName
       }).subscribe(
         (response) => {
           // stop loading
           this.isLoading = false;
-          if (response.status === 'success') {
-            this._notifieService.notify('success', 'Registration successful');
-            this._router.navigateByUrl('/login');
-          } else {
-            this._notifieService.notify('error', response.message);
-          }
+
+          this._notifieService.notify('success', response.message);
+
+          // clear form
+          this.username = ""
+          this.password = ""
+          this.confirmPassword = ""
+
         }
         , (error) => {
           // stop loading

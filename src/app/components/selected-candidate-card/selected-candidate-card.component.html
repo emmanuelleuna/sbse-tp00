@@ -1,0 +1,41 @@
+<div
+  class="{{
+    isSelected
+      ? 'card bg-success-subtle'
+      : isAbstract
+      ? 'card bg-primary-subtle'
+      : 'card'
+  }}"
+>
+  <div class="card-body">
+    <!-- chart -->
+    <div id="chart">
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [dataLabels]="chartOptions.dataLabels"
+        [plotOptions]="chartOptions.plotOptions"
+        [xaxis]="chartOptions.xaxis"
+      ></apx-chart>
+    </div>
+
+    <!-- user section -->
+    <div class="d-flex flex-row p-2 gap-3">
+      <!-- avatar -->
+      <!-- <div class="avatar">
+        <i
+          alt="user"
+          class="bi bi-person-circle fs-2 rounded-full w-16 h-16"
+        ></i>
+      </div> -->
+
+      <!-- text -->
+      <div class="d-flex flex-column gap-1">
+        <h3 class="text-2xl font-bold">
+          {{ isAbstract ? "Recommandation" : "John Doe" }}
+        </h3>
+        <p class="text-gray-500">{{ isAbstract ? "--------" : "+237 670 630 558" }}</p>
+      </div>
+    </div>
+  </div>
+</div>

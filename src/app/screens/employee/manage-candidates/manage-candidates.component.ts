@@ -5,6 +5,7 @@ import { NotifierModule, NotifierService } from 'angular-notifier';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { forkJoin, Observable } from 'rxjs';
+import { SelectedCandidateCardComponent } from "../../../components/selected-candidate-card/selected-candidate-card.component";
 
 @Component({
   selector: 'app-manage-candidates',
@@ -12,8 +13,9 @@ import { forkJoin, Observable } from 'rxjs';
   imports: [
     CommonModule,
     NotifierModule,
-    FormsModule
-  ],
+    FormsModule,
+    SelectedCandidateCardComponent
+],
   templateUrl: './manage-candidates.component.html',
   styleUrl: './manage-candidates.component.css'
 })
@@ -30,13 +32,22 @@ export class ManageCandidatesComponent {
   // variables ============================================
   isMessageSending = false;
   isJobListLoading = false
-  isSelectedCandidateDisplayed = false;
+  isSelectedCandidateDisplayed = true;
   isSelectionLoading = false;
   isJobCandidatListLoading = false
   jobList: any[] = []
   candidateList: any[] = []
   selectedCandidates: any[] = []
-  selectedJob = null
+  selectedJob: any = null
+  job_title = ''
+
+  // --- finalist info
+  all_finalist: any[] = [];
+  real_finalist: any[] = [];
+  abstract_finalist: any[] = [];
+  selected_finalist: any[] = [];
+  rest_of_finalist: any[] = [];
+
 
 
   // function =============================================
@@ -116,38 +127,65 @@ export class ManageCandidatesComponent {
     // code ...
   }
 
+  getSelcetedCandidate<T>(array: T[]): T[] {
+    // Copie du tableau pour ne pas modifier l'original
+    const shuffled = [...array];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      // Génère un index aléatoire
+      const j = Math.floor(Math.random() * (i + 1));
+      // Échange des éléments
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled;
+  }
+
   startSelection() {
-    // code ...
+    // start loading ...
     this.isSelectionLoading = true
+    this._appService.analyzeCandidatures(Number.parseInt(this.selectedJob)).subscribe((res) => {
 
-    this._appService.analyzeCandidatures(this.selectedJob).subscribe((res) => {
+      console.log(res);
 
-      // poplate selected candida
-      this.selectedCandidates = res
+      // get finalist info
+      this.all_finalist = res.finalists_with_info
+
+      // code ...
+      this.isSelectionLoading = false;
 
     }, (error) => {
-      console.error(error);
-      this._notifierService.notify('error', 'An error occured')
+
+      // poplate selected candida
+
+      // stop loading
+      this.isSelectionLoading = false
+
+      // log
+      // console.error(error);
+
+      // notify
+      // this._notifierService.notify('error', 'An error occured')
 
     })
 
     // populate selectedcandidate list
-    this.selectedCandidates.push([
-      {
-        url: "http:...",
-        name: "Jhon Cater",
-        gender: "Male",
-        email: "jhoncarter@gmail.com",
-        phone: "650 503 478"
-      },
-      {
-        url: "http:...",
-        name: "Jhon Cater",
-        gender: "Male",
-        email: "jhoncarter@gmail.com",
-        phone: "650 503 478"
-      },
-    ])
+    // this.selectedCandidates.push([
+    //   {
+    //     url: "http:...",
+    //     name: "Jhon Cater",
+    //     gender: "Male",
+    //     email: "jhoncarter@gmail.com",
+    //     phone: "650 503 478"
+    //   },
+    //   {
+    //     url: "http:...",
+    //     name: "Jhon Cater",
+    //     gender: "Male",
+    //     email: "jhoncarter@gmail.com",
+    //     phone: "650 503 478"
+    //   },
+    // ])
 
   }
 
@@ -167,37 +205,55 @@ export class ManageCandidatesComponent {
 
     // call array
     let calls: Observable<any>[] = []
-    this.selectedCandidates.map((c, index) => {
-      let message = "Dear" + c.name + ", We are pleased to inform you that you have been selected for the[Job Title] position at[Company Name]. Your qualifications and experience stood out among the many applications we received, and we are excited about the potential you bring to our team.We will be reaching out to you shortly with further details regarding the next steps in the onboarding process.Once again, congratulations, and welcome aboard! Best regards."
-      let data = {
-        id_sender: 0,
-        id_receiver: 1,
-        message: message,
-        created_at: new Date()
-      }
-      calls.push(this._appService.sendMessage(data))
-    })
+    let message = "Dear Applicant, We are pleased to inform you that you have been selected for the .... job"
 
-    // start loader
     this.isMessageSending = true;
-    forkJoin(calls).subscribe((responses) => {
-      // stop loader
-      this.isMessageSending = false;
-      // code ...
-      // if success 
+
+    this._appService.sendMessage(message).subscribe((res) => {
+
+      // 
+      this.isMessageSending = false
+
+      //
       this._notifierService.notify('success', 'Messages have been sent successfully')
 
-    }, (errors) => {
-      // stop loader
-      this.isMessageSending = false;
+    }, (error) => {
+      this.isMessageSending = false
 
-      // notify
       this._notifierService.notify('error', 'An error occured')
 
-      // log
-      console.error(errors);
-
     })
+    // this.selectedCandidates.slice(0, 1).map((c, index) => {
+    // let message = "Dear" + c.name + ", We are pleased to inform you that you have been selected for the .... job"
+    // let data = {
+    //   id_sender: 0,
+    //   id_receiver: 1,
+    //   message: message,
+    //   created_at: new Date()
+    // }
+    // calls.push(this._appService.sendMessage(message))
+    // })
+
+    // start loader
+    // this.isMessageSending = true;
+    // forkJoin(calls).subscribe((responses) => {
+    //   // stop loader
+    //   this.isMessageSending = false;
+    //   // code ...
+    //   // if success 
+    //   this._notifierService.notify('success', 'Messages have been sent successfully')
+
+    // }, (errors) => {
+    //   // stop loader
+    //   this.isMessageSending = false;
+
+    //   // notify
+    //   this._notifierService.notify('error', 'An error occured')
+
+    //   // log
+    //   console.error(errors);
+
+    // })
 
   }
 

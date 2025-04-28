@@ -31,8 +31,8 @@
               "src/assets/plugin/apexcharts/apexcharts.css"
             ],
             "scripts": [
+              "node_modules/apexcharts/dist/apexcharts.min.js",
               "src/assets/plugin/bootstrap/js/bootstrap.bundle.min.js",
-              "src/assets/plugin/apexcharts/apexcharts.min.js",
               "src/assets/js/main.js",
               "src/assets/js/admin.init.js",
               "src/assets/js/manage-jobs.init.js",

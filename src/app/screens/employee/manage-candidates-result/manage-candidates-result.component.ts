@@ -72,43 +72,43 @@ export class ManageCandidatesResultComponent {
   /**
    * Send message to selected candidates for current job
    */
-  sendMessageToCandidate() {
+  // sendMessageToCandidate() {
 
-    // call array
-    let calls: Observable<any>[] = []
-    this.selectedCandidates.map((c, index) => {
-      let message = "Dear" + c.name + ", We are pleased to inform you that you have been selected for the[Job Title] position at[Company Name]. Your qualifications and experience stood out among the many applications we received, and we are excited about the potential you bring to our team.We will be reaching out to you shortly with further details regarding the next steps in the onboarding process.Once again, congratulations, and welcome aboard! Best regards."
-      let data = {
-        id_sender: 0,
-        id_receiver: 1,
-        message: message,
-        created_at: new Date()
-      }
-      calls.push(this._appService.sendMessage(data))
-    })
+  //   // call array
+  //   let calls: Observable<any>[] = []
+  //   this.selectedCandidates.map((c, index) => {
+  //     let message = "Dear" + c.name + ", We are pleased to inform you that you have been selected for the[Job Title] position at[Company Name]. Your qualifications and experience stood out among the many applications we received, and we are excited about the potential you bring to our team.We will be reaching out to you shortly with further details regarding the next steps in the onboarding process.Once again, congratulations, and welcome aboard! Best regards."
+  //     let data = {
+  //       id_sender: 0,
+  //       id_receiver: 1,
+  //       message: message,
+  //       created_at: new Date()
+  //     }
+  //     calls.push(this._appService.sendMessage(data))
+  //   })
 
-    // start loader
-    this.isMessageSending = true;
-    forkJoin(calls).subscribe((responses) => {
-      // stop loader
-      this.isMessageSending = false;
-      // code ...
-      // if success 
-      this._notifierService.notify('success', 'Messages have been sent successfully')
+  //   // start loader
+  //   this.isMessageSending = true;
+  //   forkJoin(calls).subscribe((responses) => {
+  //     // stop loader
+  //     this.isMessageSending = false;
+  //     // code ...
+  //     // if success 
+  //     this._notifierService.notify('success', 'Messages have been sent successfully')
 
-    }, (errors) => {
-      // stop loader
-      this.isMessageSending = false;
+  //   }, (errors) => {
+  //     // stop loader
+  //     this.isMessageSending = false;
 
-      // notify
-      this._notifierService.notify('error', 'An error occured')
+  //     // notify
+  //     this._notifierService.notify('error', 'An error occured')
 
-      // log
-      console.error(errors);
+  //     // log
+  //     console.error(errors);
 
-    })
+  //   })
 
-  }
+  // }
 
 
   ngOnInit() {

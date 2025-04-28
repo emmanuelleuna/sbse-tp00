@@ -14,6 +14,7 @@ export class AppService {
     private _localstorageService: LocalStorageService) { }
 
   private apiUrl = 'http://192.168.1.101:5000'; // À adapter selon ton backend
+  private smsUrl = "https://rest.clicksend.com/v3/sms/send"
 
 
   /**
@@ -91,7 +92,7 @@ export class AppService {
    * @param data 
    * @returns 
    */
-  registerJobSeeker(data: { username: string; password: string; firstName: string; lastName: string }): Observable<any> {
+  registerJobSeeker(data: { username: string; password: string; }): Observable<any> {
     return this.http.post(`${this.apiUrl}/register/job_seeker`, data);
   }
 
@@ -181,10 +182,35 @@ export class AppService {
 
   /**
    * Send message
+   *  {
+        "messages": [
+          {
+            "body":"test message, please ignore",
+            "to": "+237690128903",
+            "from": "+237670630558"
+          }
+        ]
+      } 
    * @returns 
    */
-  sendMessage(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/sendmessage`, data);
+  sendMessage(message: string): Observable<any> {
+    let data = {
+      "messages": [
+        {
+          "body": message,
+          "to": "+237690128903",
+          "from": "+237670630558"
+        }
+      ]
+    }
+    const username = 'emmanuelleuna758@gmail.com';
+    const password = '85B79737-656D-8D03-4571-90D0E5901D1C';
+    const encodedCredentials = btoa(`${username}:${password}`);
+
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${encodedCredentials}`,
+    });
+    return this.http.post(`${this.smsUrl}`, data, { headers });
   }
 
   /**
