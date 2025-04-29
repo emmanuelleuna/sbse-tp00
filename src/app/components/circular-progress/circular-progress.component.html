@@ -1,0 +1,30 @@
+<div class="progress-circle">
+    <svg [attr.width]="size" [attr.height]="size">
+      <circle
+        [attr.cx]="center" [attr.cy]="center" [attr.r]="radius"
+        stroke="#e6e6e6"
+        stroke-width="10"
+        fill="none"
+      />
+      <circle
+        [attr.cx]="center" [attr.cy]="center" [attr.r]="radius"
+        [attr.stroke]="color"
+        stroke-width="10"
+        fill="none"
+        stroke-linecap="round"
+        [attr.stroke-dasharray]="circumference"
+        [attr.stroke-dashoffset]="strokeDashoffset"
+        [attr.transform]="'rotate(-90 ' + center + ' ' + center + ')'"
+      />
+      <text
+        [attr.x]="center"
+        [attr.y]="center + 8"
+        text-anchor="middle"
+        [attr.font-size]="size * 0.2"
+        fill="#000"
+      >
+        {{ value }}%
+      </text>
+    </svg>
+  </div>
+  

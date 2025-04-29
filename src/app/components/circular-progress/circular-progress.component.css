@@ -1,0 +1,10 @@
+.progress-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+}
+
+svg {
+    transform: rotate(0deg);
+}

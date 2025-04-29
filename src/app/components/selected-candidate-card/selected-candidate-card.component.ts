@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { Component, Input, ViewChild } from "@angular/core";
 import {
   ApexAxisChartSeries,
@@ -8,6 +9,7 @@ import {
   ApexPlotOptions,
   NgApexchartsModule
 } from "ng-apexcharts";
+import { CircularProgressComponent } from "../circular-progress/circular-progress.component";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -22,7 +24,9 @@ export type ChartOptions = {
   selector: 'app-selected-candidate-card',
   standalone: true,
   imports: [
-    NgApexchartsModule
+    NgApexchartsModule,
+    CommonModule,
+    CircularProgressComponent
   ],
   templateUrl: './selected-candidate-card.component.html',
   styleUrl: './selected-candidate-card.component.css'
