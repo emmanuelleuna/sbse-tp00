@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
+var text = require('textbelt')
 
 @Injectable({
   providedIn: 'root'
@@ -193,24 +194,33 @@ export class AppService {
       } 
    * @returns 
    */
-  sendMessage(message: string): Observable<any> {
-    let data = {
-      "messages": [
-        {
-          "body": message,
-          "to": "+237690128903",
-          "from": "+237670630558"
-        }
-      ]
+  sendMessage(message: string) {
+    var opts = {
+      fromAddr: 'emmanuelleuna758@gmail.com',  // "from" address in received text
+      fromName: 'HireSy',       // "from" name in received text
+      region: 'cameroon',              // region the receiving number is in: 'us', 'canada', 'intl'
+      subject: 'Job Application'        // subject of the message
     }
-    const username = 'emmanuelleuna758@gmail.com';
-    const password = '85B79737-656D-8D03-4571-90D0E5901D1C';
-    const encodedCredentials = btoa(`${username}:${password}`);
+    message = 'test message, from Leuna.'
+    var phone = '23750642866'
+    text.sendText(phone, message, opts)
+    // let data = {
+    //   "messages": [
+    //     {
+    //       "body": message,
+    //       "to": "+237690128903",
+    //       "from": "+237670630558"
+    //     }
+    //   ]
+    // }
+    // const username = 'emmanuelleuna758@gmail.com';
+    // const password = '85B79737-656D-8D03-4571-90D0E5901D1C';
+    // const encodedCredentials = btoa(`${username}:${password}`);
 
-    const headers = new HttpHeaders({
-      'Authorization': `Basic ${encodedCredentials}`,
-    });
-    return this.http.post(`${this.smsUrl}`, data, { headers });
+    // const headers = new HttpHeaders({
+    //   'Authorization': `Basic ${encodedCredentials}`,
+    // });
+    // return this.http.post(`${this.smsUrl}`, data, { headers });
   }
 
   /**

@@ -34,6 +34,7 @@ export type ChartOptions = {
 export class SelectedCandidateCardComponent {
   @Input('isAbstract') isAbstract: boolean = false;
   @Input('isSelected') isSelected: boolean = false;
+  @Input('item') item!: any;
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: ChartOptions;
 
@@ -42,7 +43,7 @@ export class SelectedCandidateCardComponent {
       series: [
         {
           name: "Score",
-          data: [19, 9, 10, 50, 33, 23, 43]
+          data: [0, 0, 0, 0, 0, 0, 0]
         }
       ],
       chart: {
@@ -69,5 +70,21 @@ export class SelectedCandidateCardComponent {
         ]
       }
     };
+  }
+
+  /**
+   * Get the percentage of the AHP score
+   * @param ahp_score 
+   * @returns 
+   */
+  getAhpPercent(ahp_score: number) {
+    let percent = 0
+    percent = (ahp_score * 100) / 50
+
+    return Number.parseFloat(percent.toFixed(1));
+  }
+
+  ngOnInit() {
+    this.chartOptions.series[0].data = this.item.candidate;
   }
 }

@@ -63,7 +63,7 @@
                 </button>
 
                 <button
-                  *ngIf="selectedCandidates.length > 0"
+                  *ngIf="all_finalist.length > 0"
                   class="btn btn-sm btn-secondary"
                   type="button"
                   (click)="gotoresultPage()"
@@ -197,7 +197,7 @@
             </div>
 
             <!-- legend -->
-            <div class="d-flex flex-column gap-3">
+            <div class="d-none flex-column gap-3">
               <div class="col-12"><span class="text-muted">Legend</span></div>
               <div class="">
                 <div class="row">
@@ -255,32 +255,70 @@
 
           <!-- card area -->
           <div class="card-body">
+            <!-- display selected finalist (real) given the number of available place -->
+            <div class="mb-3">
+              <div
+                class="d-flex flex-column flex-md-row gap-3 p-3 rounded-3 bg-success-subtle border"
+              >
+                <div class="d-flex flex-column">
+                  <h4 class="fw-bold">Selected finalist</h4>
+                  <span class="">
+                    This candidate has been selected based on the number of
+                    available positions for the specific role.
+                  </span>
+                </div>
+              </div>
+            </div>
             <div class="row">
-              <!-- display selected finalist (real) given the number of available place -->
-              <div class="col-lg-6">
-                <app-selected-candidate-card [isSelected]="true" />
+              <div class="col-lg-6" *ngFor="let item of selected_finalist">
+                <app-selected-candidate-card
+                  [isSelected]="true"
+                  [item]="item"
+                />
               </div>
+            </div>
 
-              <!-- display rest of finalist (real) -->
-              <div class="col-lg-6">
-                <app-selected-candidate-card />
+            <!-- display rest of finalist (real) -->
+            <div class="mb-3">
+              <div
+                class="d-flex flex-column flex-md-row gap-3 p-3 rounded-3 border"
+              >
+                <div class="d-flex flex-column">
+                  <h4 class="fw-bold">Candidate finalist</h4>
+                  <span class="">
+                    This candidate is a finalist for the position but has not
+                    been selected
+                  </span>
+                </div>
               </div>
-              <div class="col-lg-6">
-                <app-selected-candidate-card />
+            </div>
+            <div class="row">
+              <div class="col-lg-6" *ngFor="let item of rest_finalist">
+                <app-selected-candidate-card [item]="item" />
               </div>
+            </div>
 
-              <!-- recommandation (abstract) -->
-              <div class="col-lg-6">
-                <app-selected-candidate-card [isAbstract]="true" />
+            <!-- recommandation (abstract) -->
+            <div class="mb-3">
+              <div
+                class="d-flex flex-column flex-md-row gap-3 p-3 bg-primary-subtle rounded-3 border"
+              >
+                <!-- <i class="bi bi-square-fill text-black fs-2"></i> -->
+                <div class="d-flex flex-column">
+                  <h4 class="fw-bold">Recommandation</h4>
+                  <span class="">
+                    Recommended candidate outside the initial applicant pool but
+                    is considered a strong and valuable option
+                  </span>
+                </div>
               </div>
-              <div class="col-lg-6">
-                <app-selected-candidate-card [isAbstract]="true" />
-              </div>
-              <div class="col-lg-6">
-                <app-selected-candidate-card [isAbstract]="true" />
-              </div>
-              <div class="col-lg-6">
-                <app-selected-candidate-card [isAbstract]="true" />
+            </div>
+            <div class="row">
+              <div class="col-lg-6" *ngFor="let item of abstract_finalist">
+                <app-selected-candidate-card
+                  [isAbstract]="true"
+                  [item]="item"
+                />
               </div>
             </div>
           </div>
