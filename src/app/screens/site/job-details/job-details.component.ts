@@ -50,6 +50,7 @@ export class JobDetailsComponent {
   job_salary_max: number = 0;
   job_deadline: string = this._datetimeService.formatDateToYYYYMMDD(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000));
   job_location: string = "";
+  number_applications = 0;
 
 
   // function ================================
@@ -93,6 +94,11 @@ export class JobDetailsComponent {
 
         // set appplied
         this.applied = true
+
+        console.log("===== APPLY RESPONSE ======");
+
+        console.log(response);
+
       }, (error) => {
         // stop loading
         this.isApplying = false
@@ -132,6 +138,7 @@ export class JobDetailsComponent {
         this.job_title = res.title
         this.job_description = res.description
         this.criteriaList = res.criteria
+        this.number_applications = res.number_applications
 
         // this.criteriaList = this.criteriaList.keys
 

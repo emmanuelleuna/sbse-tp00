@@ -32,11 +32,12 @@
       </div>
 
       <!-- ahp score -->
-      <div *ngIf="!isAbstract" class="">
+      <div class="">
         <app-circular-progress
           [value]="getAhpPercent(item.ahp_score)"
           [size]="80"
-          color="#4caf50"
+          color="{{isAbstract ? '#0000ff' : '#4caf50'}}"
+          
         ></app-circular-progress>
       </div>
     </div>

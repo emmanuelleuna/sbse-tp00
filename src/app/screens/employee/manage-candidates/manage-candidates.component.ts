@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { forkJoin, Observable } from 'rxjs';
 import { SelectedCandidateCardComponent } from "../../../components/selected-candidate-card/selected-candidate-card.component";
-var text = require('textbelt')
+// var text = require('textbelt')
 
 @Component({
   selector: 'app-manage-candidates',
@@ -108,20 +108,6 @@ export class ManageCandidatesComponent {
 
   getSelectedCandidates() {
     // code ...
-  }
-
-  getSelcetedCandidate<T>(array: T[]): T[] {
-    // Copie du tableau pour ne pas modifier l'original
-    const shuffled = [...array];
-
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      // Génère un index aléatoire
-      const j = Math.floor(Math.random() * (i + 1));
-      // Échange des éléments
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-
-    return shuffled;
   }
 
   startSelection() {

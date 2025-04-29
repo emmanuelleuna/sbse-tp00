@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
-var text = require('textbelt')
+// var text = require('textbelt')
 
 @Injectable({
   providedIn: 'root'
@@ -195,15 +195,15 @@ export class AppService {
    * @returns 
    */
   sendMessage(message: string) {
-    var opts = {
-      fromAddr: 'emmanuelleuna758@gmail.com',  // "from" address in received text
-      fromName: 'HireSy',       // "from" name in received text
-      region: 'cameroon',              // region the receiving number is in: 'us', 'canada', 'intl'
-      subject: 'Job Application'        // subject of the message
-    }
-    message = 'test message, from Leuna.'
-    var phone = '23750642866'
-    text.sendText(phone, message, opts)
+    // var opts = {
+    //   fromAddr: 'emmanuelleuna758@gmail.com',  // "from" address in received text
+    //   fromName: 'HireSy',       // "from" name in received text
+    //   region: 'cameroon',              // region the receiving number is in: 'us', 'canada', 'intl'
+    //   subject: 'Job Application'        // subject of the message
+    // }
+    // message = 'test message, from Leuna.'
+    // var phone = '23750642866'
+    // text.sendText(phone, message, opts)
     // let data = {
     //   "messages": [
     //     {

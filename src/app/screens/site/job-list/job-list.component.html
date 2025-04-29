@@ -264,7 +264,7 @@
             </button>
           </div>
         </div>
-        <p class="text-muted font-15 text-end"><b>1523</b> Jobs Search</p>
+        <p class="text-muted font-15 text-end"><b>{{jobList.length}}</b> Jobs Search</p>
 
         <div class="row">
           <!-- loader -->
@@ -307,7 +307,7 @@
                         {{ j.job_salary_min }}FCFA - {{ j.job_salary_max }}FCFA
                       </li>
                       <li class="vr"></li>
-                      <li>63 Applicant</li>
+                      <li>{{j.number_applications}} Applicant</li>
                     </ul>
                   </div>
                 </div>

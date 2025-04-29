@@ -79,6 +79,7 @@ export class SelectedCandidateCardComponent {
    */
   getAhpPercent(ahp_score: number) {
     let percent = 0
+    // 0000FF blue
     percent = (ahp_score * 100) / 50
 
     return Number.parseFloat(percent.toFixed(1));
